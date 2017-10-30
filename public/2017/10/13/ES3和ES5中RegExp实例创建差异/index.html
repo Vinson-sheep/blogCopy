@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>ES3和ES5中RegExp实例创建差异 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,RegExp,ES标准">
+    <meta name="description" content="犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。">
+<meta name="keywords" content="javascript,RegExp,ES标准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES3和ES5中RegExp实例创建差异">
+<meta property="og:url" content="/2017/10/13/ES3和ES5中RegExp实例创建差异/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-13T14:13:56.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES3和ES5中RegExp实例创建差异">
+<meta name="twitter:description" content="犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ES3和ES5中RegExp实例创建差异</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ES3和ES5中RegExp实例创建差异</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-13T13:56:51.000Z" itemprop="datePublished" class="page-time">
+  2017-10-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-ES3和ES5中RegExp实例创建差异"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ES3和ES5中RegExp实例创建差异</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-13 21:56:51" datetime="2017-10-13T13:56:51.000Z"  itemprop="datePublished">2017-10-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。<br><a id="more"></a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 正则表达式直接量</span></div><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/s$/</span></div></pre></td></tr></table></figure>
+<p>正则表达式直接量,ECMAScript 3规范规定，一个正则表达式直接量会在执行到它的时候转换为一个RegExp对象，同一段代码所表示正则表达式直接量的每次运算都返回同一个对象。ECMAScript 5规范则做了相反的规定，同一段代码所代表的正则表达式直接量的每次运算都返回新对象。IE一直都是按照ECMAScript 5规范实现的，多数最新版本的浏览器也开始遵循ECMAScript 5，尽管目前该标准并未全面广泛推行。</p>
+<p><em>要知道犀牛书已经很旧了，实际上主流的浏览器几乎都遵循ES 5，有的甚至全面实现ES 6。</em></p>
+<p>犀牛书的作者在这里揭示了一种非常容易忽略的情况，比如，这段代码在Firefox 3.6和Firefox 4+中运行结果不一致：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRE</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> re = <span class="regexp">/[a-z]/</span>;</div><div class="line">    re.foo = <span class="string">"bar"</span>;</div><div class="line">    <span class="keyword">return</span> re;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> reg = getRE(),</div><div class="line">    re2 = getRE();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(reg == re2);  <span class="comment">// 在Firefox .6中返回true，在Firefox 4+中返回false</span></div><div class="line">reg.foo = <span class="string">"bar"</span>;</div><div class="line"><span class="built_in">console</span>.log(re2.foo); <span class="comment">// 在Firefox 3.6中返回"baz"，在Firefox 4+返回"bar"</span></div></pre></td></tr></table></figure></p>
+<p>原因可以在ECMAScript 5规范第24页和第247页找到，也就是说在ECMAScript 3规范中，用正则表达式创建的RegExp对象会共享同一个实例，而在ECMAScript 5中则是两个独立的实例。而最新的Firefox 4、Chrome和Safari 5都遵循ECMAScript 5标准，以至于IE6~IE8都没有很好地遵循ECMAScript 3标准，不过在这个问题上反而处理对了。很明显ECMAScript 5的规范更符合开发者的期望。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-13T14:13:56.970Z" itemprop="dateUpdated">2017-10-13 22:13:56</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES标准/">ES标准</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&title=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&title=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&source=
+犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/13/ES3和ES5中RegExp实例创建差异/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/14/JS正则表达式RegExp语法/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JS正则表达式RegExp语法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/13/JS实现无限分页加载——原理图解-转/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS实现无限分页加载——原理图解(转)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&title=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&title=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&source=
+犀牛书中揭示了不同ES标准下RegExp实例创建的差异，虽然这种差异是很难被应用在实际开发中的。不过了解一下也无妨。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/13/ES3和ES5中RegExp实例创建差异/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES3和ES5中RegExp实例创建差异》 — Vinson-sheep博客&url=/2017/10/13/ES3和ES5中RegExp实例创建差异/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/13/ES3和ES5中RegExp实例创建差异/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aS24CMRAFQO5/aSJlRSRwXrc9UcYur5ADZopFx/15POL1/F75O1/X+K+v7/n0qWULAwPjtozncFUZY0zOy58NAwPjHMY4yCbvSUjj8/OfDwMDA2P8NeOd6s8xPgcDAwNjbcAdp6D5ZREDAwNjJomt7vTC7uW5OAYGxg0Z1cbAX76+sL+BgYFxE8aztcZB84oG5y/Pg4GBsTVjfsRhHDSTZkCvDFfoP2BgYNyc0QujeaitJq7VMtyb/xsYGBhHMqr71cftFf5+vMbAwNiakdwcZ0LhzEDYsk4sBgbGRoxe6Jwp/Vdblc1yGwYGxs0ZeSk/389LeDMnYGBgnMOoNgaqQ1r5oFhenvu4g4GBsTWjN+4wEyh77YFmUxMDA2MjRjV05u3PvLjWS30xMDBOZiQ7VxT684k2DAyMExgzXz9TUOs1DDAwMDDyo/Ohinw4o9eKwMDAOI2RP3Q+eLGgxJ83LzEwMDZl9ErzyUWwPJsWJ8PRdBsGBsamjOowRPLZmfpfwihnzBgYGFsw8rCYXx+r4ORq+OZMDAyMrRm98llvJz+zuTAwMLZjPIsrH7moprj5pfBjYwADA2NTRjWmVQNltS2aXyinQjMGBsYNGXmQraaX1SJaNeBiYGCcxugFvvmhrgVjFhgYGBjFgDufoDZDPwYGBkZQdKsW5qpNzWUBFwMD47aMXjMgYSfUmcsoBgbGCYz5xkCOXFuGW9zCxMDA+I+ML7tUVYNhcQMDAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript浏览器中的各种xxxHeight属性详解 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,js客户端对象,原创">
+    <meta name="description" content="曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight、offsetHeigh、scrollTop、window.innerHeight、window.pageYOffset。">
+<meta name="keywords" content="javascript,js客户端对象,原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript浏览器中的各种xxxHeight属性详解">
+<meta property="og:url" content="/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight、offsetHeigh、scrollTop、window.innerHeight、window.pageYOffset。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ohkgqh4gv.bkt.clouddn.com/1507825158%281%29.png">
+<meta property="og:image" content="http://ohkgqh4gv.bkt.clouddn.com/1507825190%281%29.png">
+<meta property="og:updated_time" content="2017-10-12T16:55:27.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript浏览器中的各种xxxHeight属性详解">
+<meta name="twitter:description" content="曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight、offsetHeigh、scrollTop、window.innerHeight、window.pageYOffset。">
+<meta name="twitter:image" content="http://ohkgqh4gv.bkt.clouddn.com/1507825158%281%29.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript浏览器中的各种xxxHeight属性详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript浏览器中的各种xxxHeight属性详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-12T15:48:16.000Z" itemprop="datePublished" class="page-time">
+  2017-10-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通用属性"><span class="post-toc-number">1.</span> <span class="post-toc-text">通用属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-scrollHeight"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. scrollHeight</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-clientHeight"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. clientHeight</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-offsetHeight"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. offsetHeight</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-scrollTop"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4. scrollTop</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器对象属性"><span class="post-toc-number">2.</span> <span class="post-toc-text">浏览器对象属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-window-innerHeight"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1. window.innerHeight</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-window-pageYOffset"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2. window.pageYOffset</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript浏览器中的各种xxxHeight属性详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript浏览器中的各种xxxHeight属性详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-12 23:48:16" datetime="2017-10-12T15:48:16.000Z"  itemprop="datePublished">2017-10-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight、offsetHeigh、scrollTop、window.innerHeight、window.pageYOffset。<br><a id="more"></a></p>
+</blockquote>
+<p><em>博主原创</em></p>
+<p>文章提要：</p>
+<ol>
+<li>滑动条的高度或宽度为17px</li>
+<li>这里讨论的xxxHeight返回的都是数值</li>
+<li>文章是以chrome测试作为结果，其他浏览器的说明是通过其他文章的描述总结得出。</li>
+</ol>
+<h2 id="通用属性"><a href="#通用属性" class="headerlink" title="通用属性"></a>通用属性</h2><h3 id="1-scrollHeight"><a href="#1-scrollHeight" class="headerlink" title="1. scrollHeight"></a>1. scrollHeight</h3><p>scrollHeight表示的是滑动条内可滑动的内容。</p>
+<p>如果内容没有超出元素高度，那么scrollHeight表示的是元素的height加上padding，不包括bording。</p>
+<p>如果内容超出了元素高度但没有设置滑动条，那么scrollHeight表示的是元素height加上元素的上padding（scrollWidth为左padding），不包括下padding和bording。</p>
+<p>如果内容超出了元素高度并且设置有滑动条，那么scrollHeight表示的是滑动条可滑动的高度，不包括滑动条自身的高度（17px）。</p>
+<p>我们来测试一下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">        <span class="selector-id">#test</span> &#123;</span></div><div class="line"><span class="undefined">            width: 50px;</span></div><div class="line"><span class="undefined">            border: 5px solid green;</span></div><div class="line"><span class="undefined">            background-color: black;</span></div><div class="line"><span class="undefined">            color: red;</span></div><div class="line"><span class="undefined">            padding: 10px;</span></div><div class="line"><span class="undefined">            overflow: scroll;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>clientHeight:可见区域的宽度,不包括boder的宽度,如果区域内带有滚动条,还应该减去横向滚动条不可用的高度,正常的是17px</div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> test = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">"scroll="</span> + test.scrollHeight+ <span class="string">";client="</span> + test.clientHeight + <span class="string">";offset="</span> + test.offsetHeight)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>下面是测试结果：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ohkgqh4gv.bkt.clouddn.com/1507825158%281%29.png" alt="chrome测试结果" title="">
+                </div>
+                <div class="image-caption">chrome测试结果</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ohkgqh4gv.bkt.clouddn.com/1507825190%281%29.png" alt="console输出结果" title="">
+                </div>
+                <div class="image-caption">console输出结果</div>
+            </figure>
+<p>分析：</p>
+<p>这里的例子是利用一些巧妙的方法，使保证内容全部显示的同时保持滑动条的存在。从图中我们可以看到，元素总导高度为551px，那么scrollHeight的数值到底是怎么算出来的呢？首先是上下border一共10px，再加上滑动条高度的17px一共27px，于是551-27=524。</p>
+<p>最后引用其他博主的文字：</p>
+<blockquote>
+<p>scrollHeight:这个属性就比较麻烦了,因为它们在火狐跟IE下简直差太多了..<br>在火狐下还很好理解,它其实就是滚动条可滚动的部分还要加上boder的高度还要加上横向滚动条不可用的高度,与clientHeight比起来,多个border的高度跟横向滚动条不可用的高度.</p>
+<p>在IE中 scrollHeight确是指这个对象它所包含的对象的高度加上boder的高度和marging,如果它里面没有包含对象或者这个对象的高度值未设置,那么它的值将为15</p>
+</blockquote>
+<h3 id="2-clientHeight"><a href="#2-clientHeight" class="headerlink" title="2. clientHeight"></a>2. clientHeight</h3><p>这个属性等于元素内容高度height加上padding。</p>
+<p>这个元素没什么好说的，各种浏览器下表现一样。</p>
+<h3 id="3-offsetHeight"><a href="#3-offsetHeight" class="headerlink" title="3. offsetHeight"></a>3. offsetHeight</h3><p>这个属性表示元素内容高度height加上padding再加上border，但不包括margin。</p>
+<h3 id="4-scrollTop"><a href="#4-scrollTop" class="headerlink" title="4. scrollTop"></a>4. scrollTop</h3><p>这个属性表示视窗上面隐藏了部分的高度。</p>
+<p>常用的语句是：<code>document.body.scrollTop</code>和<code>document.documentElement.scrollTop</code></p>
+<p>值得注意的一点是，chrome不承认<code>document.documentElement.scrollTop</code>，或者说，它永远返回数值<code>0</code>。</p>
+<h2 id="浏览器对象属性"><a href="#浏览器对象属性" class="headerlink" title="浏览器对象属性"></a>浏览器对象属性</h2><h3 id="1-window-innerHeight"><a href="#1-window-innerHeight" class="headerlink" title="1. window.innerHeight"></a>1. window.innerHeight</h3><p>返回浏览器窗口高度。</p>
+<h3 id="2-window-pageYOffset"><a href="#2-window-pageYOffset" class="headerlink" title="2. window.pageYOffset"></a>2. window.pageYOffset</h3><p>数值和<code>document.body.scrollTop</code>一致，表示视窗上面隐藏了部分的高度。</p>
+<p>参考文章：</p>
+<p><a href="http://www.cnblogs.com/xing901022/p/5052780.html" target="_blank" rel="external">JS实现无限分页加载——原理图解</a></p>
+<p><a href="http://www.cnblogs.com/yuteng/articles/1894578.html" target="_blank" rel="external">height、clientHeight、scrollHeight、offsetHeight区别</a></p>
+<p><a href="https://jingyan.baidu.com/article/a3f121e4f21433fc9052bb8f.html" target="_blank" rel="external">Chrome不认documentElement.scrollTop</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-12T16:55:27.864Z" itemprop="dateUpdated">2017-10-13 00:55:27</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js客户端对象/">js客户端对象</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原创/">原创</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&title=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&title=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&source=
+曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/13/JS实现无限分页加载——原理图解-转/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JS实现无限分页加载——原理图解(转)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/08/Javascript类型的判断/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript类型的判断</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&title=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&title=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&source=
+曾经一度被浏览器中的各种高度弄得头晕眼花，今天特意查询了这方面的内容，终于搞懂了，决定写篇文章纪念一下scrollHeight、clientHeight..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript浏览器中的各种xxxHeight属性详解》 — Vinson-sheep博客&url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3awW7bQAwE0Pz/T6dATy1SOzPkbmygTyfDjqx9MqBlhvz4iI/P38ejdz7/OB59+vXcr2c9um7yl6sDDw8Pb7T0R0e7xBkmp+ZrxsPDw7vNS74uuUy7eeTs5zfx4ft4eHh4L+U9B+QleLIltGU6Hh4e3nvykv/3ZylB8ikeHh7eu/GSMKINIPaxQl7KH8ha8PDw8GJe2wB7h9cX+3t4eHh4i656+8jON5JkDfvV4uHh4d3g3YgSkjZYEjrMQorrSQkeHt5/z9s8sttBq9mIQN5a+8d68PDw8C7wZpjNU3ezDeQDXh+b3woPDw8v7qq3D+vn0cNscW3T65vNAw8PD+8Cb9YAa5F5oJBvS+0V8fDw8M7yZqFDXi63ce3hMAIPDw/vGq/dAHLwqaB2WDrj4eHhXeC1X715xO83kvw1Hh4e3s/wZoNTeSlc9+XKdtqB3xAPDw/v6Xe2wwHtYEFegp9qvP11Fh4eHt4FXhSDjqLVvCzOy+h8nqpYBB4eHl7Jy8OCvN2VD1fNAuViK8LDw8O7xjsVqraDWbNtpsDj4eHh/QgvCR3yxbXR7f5G4+Hh4d3mzRaUBwrtjZhtJ99cEQ8PD+8oL1l03rDPN5VZ0Vy34vDw8PAu8/IBqTzC2DTbDk9G4OHh4V2bSmqj27Mhb3LU18LDw8O7wGuHmU6FuZstpw2I8fDw8M7yNg/uvPzNt4FZKT/8xfDw8PDWvFmU0B77pldx4OHh4R3lzZbVbifJue07wy0BDw8Pb81rn7Ftq+z5TdysIQ+R8fDw8G7wZhHqjJ0vNy/98fDw8F7F25TFmyGtUzHEN+MCeHh4eG/Daz+dlderBhseHh7eS3mbYazZCEIbAePh4eH9JC8JI2ZFc8K+3tzCw8PDO8rbNJ/aArelbkYN8PDw8C7wfgEbPg0BxWYGCQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

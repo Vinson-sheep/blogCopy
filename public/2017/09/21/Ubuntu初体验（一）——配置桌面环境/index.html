@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu初体验（一）——配置桌面环境 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu,Linux">
+    <meta name="description" content="Ubuntu配置桌面环境">
+<meta name="keywords" content="Ubuntu,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu初体验（一）——配置桌面环境">
+<meta property="og:url" content="/2017/09/21/Ubuntu初体验（一）——配置桌面环境/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="Ubuntu配置桌面环境">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ohkgqh4gv.bkt.clouddn.com/126SST10FOY3.png">
+<meta property="og:updated_time" content="2017-09-21T16:36:41.912Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu初体验（一）——配置桌面环境">
+<meta name="twitter:description" content="Ubuntu配置桌面环境">
+<meta name="twitter:image" content="http://ohkgqh4gv.bkt.clouddn.com/126SST10FOY3.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu初体验（一）——配置桌面环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu初体验（一）——配置桌面环境</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-21T15:22:49.000Z" itemprop="datePublished" class="page-time">
+  2017-09-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装桌面环境"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装桌面环境</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#升级一下"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">升级一下</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装gnome3-9桌面"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装gnome3.9桌面</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置中文环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置中文环境</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Ubuntu初体验（一）——配置桌面环境"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu初体验（一）——配置桌面环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-21 23:22:49" datetime="2017-09-21T15:22:49.000Z"  itemprop="datePublished">2017-09-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>阿里云的服务器，如果使用的是Linux系统，一开始只有命令行界面，对于想要好好学习的我简直吓坏了，所以安装一个界面方便使用。不过要注意，安装桌面环境会一定程度上降低服务器的性能，但是对于我这种简单部署就不会有大的阻碍。<br><a id="more"></a></p>
+<blockquote>
+<p>由于我以前使用的是国产的deepin，之后使用阿里云Ubuntu的时候简直吓坏了，只有命令行界面。在安装桌面环境的时候也遇到了各种各样的问题，比如说中文乱码问题。<br>Ubuntu14.05 桌面gnome3.9</p>
+</blockquote>
+<h2 id="安装桌面环境"><a href="#安装桌面环境" class="headerlink" title="安装桌面环境"></a>安装桌面环境</h2><h3 id="升级一下"><a href="#升级一下" class="headerlink" title="升级一下"></a>升级一下</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> update</div><div class="line">sudo apt-<span class="builtin-name">get</span> upgrade</div></pre></td></tr></table></figure>
+<h3 id="安装gnome3-9桌面"><a href="#安装gnome3-9桌面" class="headerlink" title="安装gnome3.9桌面"></a>安装gnome3.9桌面</h3><p>依次输入以下命令<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">apt-<span class="builtin-name">get</span> install x-window-system-core</div><div class="line">apt-<span class="builtin-name">get</span> install gnome-core</div><div class="line">apt-<span class="builtin-name">get</span> install gdm</div></pre></td></tr></table></figure></p>
+<p>输入<code>startx</code>进入桌面环境。可以看到桌面重启后会让你输入root的帐号密码，<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ohkgqh4gv.bkt.clouddn.com/126SST10FOY3.png" alt="gnome界面" title="">
+                </div>
+                <div class="image-caption">gnome界面</div>
+            </figure></p>
+<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><blockquote>
+<p>有些桌面界面会配置好中文环境（至少deepin对中文很友好，毕竟是国产的），而一般外国的桌面都是英文的，连中文都打不进去，更不要说修改什么什么东西了。当我用ftp传输文件的时候，中文会变成带数字的方块。</p>
+</blockquote>
+<ol>
+<li>首先查看一下系统的设定。进入gnome的<code>system setting</code>，查看<code>Region Language</code>，在<code>Language</code>一栏，发现一开始并没有Chinese选项。（如果有，设定为Chinese后重启大概完事）</li>
+<li>返回终端,执行以下命令<br><code>sudo apt-get install  language-pack-zh-han*</code><br>这样可以安装中文包。</li>
+<li>安装完成后重启服务器。<br>这时候可以在<code>Language</code>一栏看到<code>Chinese</code>，将<code>Language</code>改为<code>Chinese</code>，并且把<code>input Sources</code>改为<code>Chinese</code>。</li>
+<li>再次重启服务器。<br>重启后发现系统很多原本是英文的地方变成了白色矩形。推测是已经将系统语言变成中文，但是系统并没有装载任何中文字体。</li>
+<li><p>安装中文字体<br>先安装一个字体</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="keyword">get</span> install xfonts-wqy <span class="comment">#文泉驿-正黑</span></div><div class="line">sudo apt-<span class="keyword">get</span> install ttf-wqy-zenhei <span class="comment">#思源黑体</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>进入到字体目录下/usr/share/fonts/</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd <span class="regexp">/usr/</span>share<span class="regexp">/fonts/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>更新字体</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo <span class="built_in">fc</span>-cache -fv</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这时候应该能正常显示中文了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-21T16:36:41.912Z" itemprop="dateUpdated">2017-09-22 00:36:41</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&title=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&title=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&source=阿里云的服务器，如果使用的是Linux系统，一开始只有命令行界面，对于想要好好学习的我简直吓坏了，所以安装一个界面方便使用。不过要注意，安装桌面环境会一定..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/22/Ubuntu初体验（二）——常用软件安装/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Ubuntu初体验（二）——常用软件安装</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/21/Nginx-uWSGI-flask部署app环境/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Nginx+uWSGI+flask部署app环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&title=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&title=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&source=阿里云的服务器，如果使用的是Linux系统，一开始只有命令行界面，对于想要好好学习的我简直吓坏了，所以安装一个界面方便使用。不过要注意，安装桌面环境会一定..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu初体验（一）——配置桌面环境》 — Vinson-sheep博客&url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/Ubuntu初体验（一）——配置桌面环境/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQXLCMBAEQP7/aeeaQzAza4Uqy60TFVJGzWFZzer1itfxZv1+9/z1+TPf/WXxwsDAuC3jOF3nHzljJ/+f7w0DA+M5jHePzsvorLwmjOizMDAwMOJHt0V22VeGgYGBET9u1mJiYGBgJIxZoHbe2J2HaC1y2VkcAwPjhow8df/+63+Zb2BgYNyKcZSrbf7aIjtbGBgYezPyAnfekM0qfY6P9oOBgbEp40o0Nrse0R50o6seGBgYWzOS+GxWUmcXL9qrGBgYGM9h5O3aqiYyKbvt4BMDA2NvRjuq/GYBLeI8DAyMTRlt4ZthroxI6wthGBgY2zGSbeUH3TaSy9vK+ncDAwNjI0YbtM2GAbMhaNFKYmBgbM24Hu7nxXdtJIeBgfE0xiymX3v9YvYz8PbmCAYGxkaMvFFrN9RGb+3Rtz6FY2BgbMHIr1lcif6T5+Sv/yi4GBgY2zHy4riq+ZuNDaLYDgMD4wGMdlSZl9e2lOdhHAYGxtMYSRDWxnBXBg/1KAIDA+MxjPwaxGzT14vsh9ANAwPjAYz2ccmBs43whgUaAwNjU8ZRrnbwmYwth+UVAwPjMYxZfDYr3Dly9pVhYGDszbh0JascNCbH13wPdWqIgYFxc0Zb+PJh5Nq270PchoGBgTEq0HlpToK8DydyDAwMjLgRbI+vbTC3uDXEwMC4CSNv9dp3Z+OEtrnEwMDYm9EeHWfH2ivt5rKhJgYGxv0YP1r38C5PYeZQAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

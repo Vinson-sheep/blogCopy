@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript逻辑运算符——原理详解 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="最开始我看廖学锋的javascript教程，以为&amp;amp;&amp;amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然大悟。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript逻辑运算符——原理详解">
+<meta property="og:url" content="/2017/10/01/Javascript逻辑运算符——原理详解/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="最开始我看廖学锋的javascript教程，以为&amp;amp;&amp;amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然大悟。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T16:54:57.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript逻辑运算符——原理详解">
+<meta name="twitter:description" content="最开始我看廖学锋的javascript教程，以为&amp;amp;&amp;amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然大悟。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript逻辑运算符——原理详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript逻辑运算符——原理详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-30T16:38:48.000Z" itemprop="datePublished" class="page-time">
+  2017-10-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑与（-amp-amp-）"><span class="post-toc-number">1.</span> <span class="post-toc-text">逻辑与（&&）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑或（-）"><span class="post-toc-number">2.</span> <span class="post-toc-text">逻辑或（||）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逻辑非（-）"><span class="post-toc-number">3.</span> <span class="post-toc-text">逻辑非（!）</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript逻辑运算符——原理详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript逻辑运算符——原理详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-01 00:38:48" datetime="2017-09-30T16:38:48.000Z"  itemprop="datePublished">2017-10-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>最开始我看廖学锋的javascript教程，以为&amp;&amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然大悟。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="逻辑与（-amp-amp-）"><a href="#逻辑与（-amp-amp-）" class="headerlink" title="逻辑与（&amp;&amp;）"></a>逻辑与（&amp;&amp;）</h2><p>犀牛书中描述了<code>&amp;&amp;</code>的第三层理解：</p>
+<blockquote>
+<p>运算符首先计算左操作数的值，即首先计算“&amp;&amp;”左侧的表达式。如果计算结果是加值，那么整个表达式的结果一定是假值，因此“&amp;&amp;”这时简单地返回左操作数，并不会对右操作数进行计算。</p>
+<p>反过来讲，如果左操作数是真值，那么整个表达式的结果则依赖于右操作数的值。</p>
+</blockquote>
+<p><em>假值是<code>false</code>、<code>null</code>、<code>undefined</code>、<code>0</code>、<code>-0</code>、<code>NaN</code>和<code>&quot;&quot;</code></em></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; <span class="keyword">x</span>:<span class="number">1</span> &#125;<span class="comment">;</span></div><div class="line"><span class="comment">var p = null;</span></div><div class="line"><span class="comment">o &amp;&amp; o.x  // =&gt;1:0 是真值，因此返回值为o.x</span></div><div class="line"><span class="comment">p &amp;&amp; p.x  // =&gt;null: p是假值，因此将其返回，并不去计算p.x</span></div></pre></td></tr></table></figure>
+<h2 id="逻辑或（-）"><a href="#逻辑或（-）" class="headerlink" title="逻辑或（||）"></a>逻辑或（||）</h2><p>尽管“||”运算大多情况下只是做简单布尔或（OR）运算，和“&amp;&amp;”一样，它也具有一些更复杂的行为。</p>
+<p>它会首先计算第一个操作数的值，也就是说会首先计算左侧的表达式。如果计算结果为真值，那么返回这个真值。否则，再计算第二个操作数的值，即计算右侧的表达式，并返回这个表达式的计算结果。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果max_width已经定义了，直接使用它</span></div><div class="line"><span class="comment">// 否则在preferences对象中查找max_width</span></div><div class="line"><span class="comment">// 如果没有定义它，则使用一个写死的常量</span></div><div class="line"><span class="built_in">var</span> <span class="keyword">max</span> = max_width || preferences.max_width || <span class="number">500</span>;</div></pre></td></tr></table></figure>
+<h2 id="逻辑非（-）"><a href="#逻辑非（-）" class="headerlink" title="逻辑非（!）"></a>逻辑非（!）</h2><p>“!”运算符首先将其操作数转换为布尔值，然后再对布尔值求反。</p>
+<p>也就是说“!”总是返回<code>true</code>或者<code>false</code>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-30T16:54:57.785Z" itemprop="dateUpdated">2017-10-01 00:54:57</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/01/Javascript逻辑运算符——原理详解/&title=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/01/Javascript逻辑运算符——原理详解/&title=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&source=
+最开始我看廖学锋的javascript教程，以为&amp;&amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/01/Javascript逻辑运算符——原理详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&url=/2017/10/01/Javascript逻辑运算符——原理详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/01/Javascript逻辑运算符——原理详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/01/Javascript带操作的赋值运算——小坑/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript带操作的赋值运算——小坑</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/01/Javascript中instanceof运算符/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript中instanceof运算符</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/01/Javascript逻辑运算符——原理详解/&title=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/01/Javascript逻辑运算符——原理详解/&title=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&source=
+最开始我看廖学锋的javascript教程，以为&amp;&amp;是直接返回一个布尔值ture或者false，直到我膝盖中了一剪，遇到犀牛书，突然恍然..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/01/Javascript逻辑运算符——原理详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript逻辑运算符——原理详解》 — Vinson-sheep博客&url=/2017/10/01/Javascript逻辑运算符——原理详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/01/Javascript逻辑运算符——原理详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3ay07DQAwFUP7/p4vEClQ1XNspIs6ZVUWHZk4Xrh/z8RGvx9f6/vp5Pe9//q9kz/PO0xYGBsZlGY/D9eoQx8hjfHKS/GwYGBj3YeRBNgmgr95NnpjvxMDAwEjC6DsOioGBgTEPuMcPTo47KX0xMDDuzEiK2ONCNNk//5wTanEMDIwLMnqDgb95/fb5BgYGxr9nPIrrOI3rhe8TToWBgbGakTS8JsnfJFpWy1oMDIzdjHwkmTfxe4OEfJxQ6B1iYGAsZeSJ4PzSRu8HILochoGBsZoxSd2SBG5yLaOcGmJgYFyckTezeg24aqqXBFwMDIx7MvI0LudVL4H10sof8w0MDIyljOpxey2wScOuEJoxMDCWMqrNrzxAV8eiSciOMlwMDIx1jOQCRB4W8/FA/txkPwYGxm5Gr0DtNcjydLM8/sTAwLgBY5Le9T6h2sj7JUHEwMBYzZiEzmra16s6exc1MDAw9jGqSdt856RIfvl3DAyM1Yze4/PitlesNpt3GBgY6xj5Fa58GFltpVXLWgwMjHsy8uHlpKzNA3d5/ICBgbGakY8qJ++O+n/5UzAwMJYyHsVVHQbkzbLREBQDA2M1ozpczFO93mfmxXBzaIqBgXFZRhJkJw245OpY8qX8UjxjYGDcgJEEvmoUTxr9pxW9GBgYGOMisxpAyyU0BgYGxuDSWJIyJqnnaakhBgbGZRmTS1r51zFJNKOAi4GBsZTRKyAnc4ZeKTspgDEwMC7L+AR2QQPxO1IHNAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

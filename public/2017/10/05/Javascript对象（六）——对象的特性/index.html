@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript对象（六）——对象的特性 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,js对象">
+    <meta name="description" content="对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript 5中查询和设置这些属性特性的API。这些API对于库开发者来说非常重要。">
+<meta name="keywords" content="javascript,js对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript对象（六）——对象的特性">
+<meta property="og:url" content="/2017/10/05/Javascript对象（六）——对象的特性/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript 5中查询和设置这些属性特性的API。这些API对于库开发者来说非常重要。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-05T13:47:55.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript对象（六）——对象的特性">
+<meta name="twitter:description" content="对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript 5中查询和设置这些属性特性的API。这些API对于库开发者来说非常重要。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript对象（六）——对象的特性</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript对象（六）——对象的特性</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-05T13:10:28.000Z" itemprop="datePublished" class="page-time">
+  2017-10-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据属性的4个特性"><span class="post-toc-number">1.</span> <span class="post-toc-text">数据属性的4个特性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#存取器属性的4个特性"><span class="post-toc-number">2.</span> <span class="post-toc-text">存取器属性的4个特性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object-getOwnPropertyDescriptor"><span class="post-toc-number">3.</span> <span class="post-toc-text">Object.getOwnPropertyDescriptor()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object-defineProperty"><span class="post-toc-number">4.</span> <span class="post-toc-text">Object.defineProperty()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object-defineProperties"><span class="post-toc-number">5.</span> <span class="post-toc-text">Object.defineProperties()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置规则"><span class="post-toc-number">6.</span> <span class="post-toc-text">配置规则</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript对象（六）——对象的特性"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript对象（六）——对象的特性</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-05 21:10:28" datetime="2017-10-05T13:10:28.000Z"  itemprop="datePublished">2017-10-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript 5中查询和设置这些属性特性的API。这些API对于库开发者来说非常重要。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="数据属性的4个特性"><a href="#数据属性的4个特性" class="headerlink" title="数据属性的4个特性"></a>数据属性的4个特性</h2><ul>
+<li>值(value)</li>
+<li>可写性(writable)</li>
+<li>可枚举性(enumerable)</li>
+<li>可配置性(configurable)</li>
+</ul>
+<h2 id="存取器属性的4个特性"><a href="#存取器属性的4个特性" class="headerlink" title="存取器属性的4个特性"></a>存取器属性的4个特性</h2><ul>
+<li>读取(get)</li>
+<li>写入(set)</li>
+<li>可枚举性</li>
+<li>可配置性</li>
+</ul>
+<h2 id="Object-getOwnPropertyDescriptor"><a href="#Object-getOwnPropertyDescriptor" class="headerlink" title="Object.getOwnPropertyDescriptor()"></a>Object.getOwnPropertyDescriptor()</h2><p>通过调用<code>Object.getOwnPropertyDescriptor()</code>可以获得某个对象特定属性的属性描述符：<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回 &#123;value: 1,writable: true,enumerable: true,configurable: true&#125;</span></div><div class="line"><span class="keyword">Object</span>.getOwnPropertyDescriptor(&#123;x:<span class="number">1</span>&#125;, <span class="string">"x"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 查询上下文中定义的random对象的octet属性（这里没有random对象）</span></div><div class="line"><span class="comment">// 返回 &#123; get: /*func*/, set:undefined, enumerable: true, configurable: true&#125;</span></div><div class="line"><span class="keyword">Object</span>.getOwnPropertyDescriptor(<span class="built_in">random</span>, <span class="string">"octet"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 对于继承属性和不存在的属性，返回undefined</span></div><div class="line"><span class="keyword">Object</span>.getOwnPropertyDescriptor(&#123;&#125;, <span class="string">"x"</span>);         <span class="comment">// undefined,没有这个属性</span></div><div class="line"><span class="keyword">Object</span>.getOwnPropertyDescriptor(&#123;&#125;, <span class="string">"toString"</span>);  <span class="comment">// undefined,继承属性</span></div></pre></td></tr></table></figure></p>
+<p>从函数名字就可以看出，<code>Object.getOwnPropertyDescriptor()</code>只能得到自有属性的描述符。</p>
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h2><p>要想设置属性的特性，或者想让新建属性具有某种特效，则需要调用<code>Object.defineProperty()</code>，传入要修改的对象、要创建或修改的属性的名称以及属性描述符对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123;&#125;; <span class="comment">// 创建一个空对象</span></div><div class="line"><span class="comment">// 添加一个不可枚举的属性x，并赋值为1</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">"x"</span>, &#123; <span class="attr">value</span>: <span class="number">1</span>,</div><div class="line">                                writable: <span class="literal">true</span>,</div><div class="line">                                enumerable: <span class="literal">false</span>,</div><div class="line">                                configurable: <span class="literal">true</span>&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 属性是存在的，但不可枚举</span></div><div class="line">o.x;            <span class="comment">// =&gt; 1</span></div><div class="line"><span class="built_in">Object</span>.keys(o)  <span class="comment">// =&gt; []</span></div><div class="line"></div><div class="line"><span class="comment">// 现在对属性x做修改，让它变为只读</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">"x"</span>, &#123;<span class="attr">writable</span>: <span class="literal">false</span> &#125;);</div><div class="line"></div><div class="line"><span class="comment">// 试图更改这个属性的值</span></div><div class="line">o.x = <span class="number">2</span>;  <span class="comment">// 操作失败但不报错，而在严格模式中抛出类型错误异常</span></div><div class="line">o.x       <span class="comment">// =&gt; 1</span></div><div class="line"></div><div class="line"><span class="comment">// 属性依然是可配置的，因此可以通过这种方式对它进行修改：</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">"x"</span>, &#123;<span class="attr">value</span>: <span class="number">2</span>&#125;);</div><div class="line">o.x       <span class="comment">// =&gt; 2</span></div><div class="line"></div><div class="line"><span class="comment">//现在将x从数据属性修改为存取器属性</span></div><div class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">"x"</span>, &#123; <span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="number">0</span>; &#125;&#125;);</div><div class="line">o.x       <span class="comment">// =&gt; 0</span></div></pre></td></tr></table></figure></p>
+<p>传入<code>Object.defineProperty()</code>属性描述符对象不必包含所有4个特效。<strong>对于新创建的属性来说，默认的特性值是false或undefined</strong>。注意，这个方法要么修改已有属性要么新建自有属性，但不能修改继承属性。</p>
+<h2 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties()"></a>Object.defineProperties()</h2><p>如果要同时修改或创建多个属性，则需要使用<code>Object.defineProperties()</code>。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="string">var</span> <span class="string">p</span> <span class="string">=</span> <span class="string">Object.defineProperties(&#123;&#125;,&#123;</span></div><div class="line"><span class="attr">      x:</span> <span class="string">&#123;value:</span> <span class="number">1</span><span class="string">,</span> <span class="attr">writable:</span> <span class="literal">true</span><span class="string">,</span> <span class="attr">enumerable:</span> <span class="literal">true</span><span class="string">,</span> <span class="attr">configurable:</span> <span class="literal">true</span><span class="string">&#125;,</span></div><div class="line"><span class="attr">      y:</span> <span class="string">&#123;value:</span> <span class="number">1</span><span class="string">,</span> <span class="attr">writable:</span> <span class="literal">true</span><span class="string">,</span> <span class="attr">enumerable:</span> <span class="literal">true</span><span class="string">,</span> <span class="attr">configurable:</span> <span class="literal">true</span><span class="string">&#125;,</span></div><div class="line"><span class="attr">      r:</span> <span class="string">&#123;</span></div><div class="line"><span class="attr">          get:</span> <span class="string">function()</span> <span class="string">&#123;return</span> <span class="string">Math.sqrt(this.x*this.x</span> <span class="string">+</span> <span class="string">this.y*this.y)</span> <span class="string">&#125;,</span></div><div class="line"><span class="attr">          enumerable:</span> <span class="literal">true</span><span class="string">,</span></div><div class="line"><span class="attr">          configurable:</span> <span class="literal">true</span></div><div class="line">      <span class="string">&#125;</span></div><div class="line"><span class="string">&#125;);</span></div></pre></td></tr></table></figure></p>
+<p>这段代码从一个空对象开始，然后给它添加两个数据属性和一个只读存取器属性。最终<code>Object.defineProperties()</code>返回修改后的对象（和<code>Object.defineProperty</code>一样）。</p>
+<h2 id="配置规则"><a href="#配置规则" class="headerlink" title="配置规则"></a>配置规则</h2><ul>
+<li>如果对象是不可扩展，则可以编辑已有的自有属性，但不能给它添加新属性。</li>
+<li>如果属性是不可配置的，则不能修改它的可配置性和可枚举性。</li>
+<li>如果存取器属性是不可配置的，则不能修改其getter和setter方法，也不能将它转换为数据属性。</li>
+<li>如果数据属性是不可配置的，则不能将它转换为存取器属性。</li>
+<li>如果数据属性是不可配置的，则不能将它的可写性从false修改为true，但可以从true修改为false。</li>
+<li>如果数据属性是不可配置且不可泄的，则不能修改它的值。然而可配置但不可写属性的值是可以修改的（实际上是先将它标记为可写的，然后修改它的值，最后转换为不可写的）。</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-05T13:47:55.908Z" itemprop="dateUpdated">2017-10-05 21:47:55</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js对象/">js对象</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/05/Javascript对象（六）——对象的特性/&title=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/05/Javascript对象（六）——对象的特性/&title=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&source=
+对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/05/Javascript对象（六）——对象的特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&url=/2017/10/05/Javascript对象（六）——对象的特性/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/05/Javascript对象（六）——对象的特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/05/Javascript对象（七）——对象的三个属性/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript对象（七）——对象的三个属性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/05/Javascript对象（五）——存取器属性/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript对象（五）——存取器属性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/05/Javascript对象（六）——对象的特性/&title=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/05/Javascript对象（六）——对象的特性/&title=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&source=
+对象的属性除了包含名字和值之外，属性还包含一些标识它们可写、可枚举和可配置的特性。在ECMAScript 3中无法设置这些特效。而ECMAScript ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/05/Javascript对象（六）——对象的特性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象（六）——对象的特性》 — Vinson-sheep博客&url=/2017/10/05/Javascript对象（六）——对象的特性/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/05/Javascript对象（六）——对象的特性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aMZLCMAwF0L3/pdmWGSB8SaaI/VxlMsHxSyFkyX9/8Xg8jec7r8+8Pv/62+s5X59cNjAwMG7LeFyOT88kM+TPXF8n82NgYJzA+BTBrq+r4fjLUoJ3fbyPgYGBcZkITgJ3kmJiYGBgrGJc7y6ru1EMDAyMXqC83tDmgTX51Q/34hgYGDdkTILgr69/0t/AwMC4FeNRHL1mZ56G9gYGBsbejDzAVctnyUGKScDFwMA4hzEPc0k7M083k3D85r0YGBgHMJLSfw9TPaixICnEwMA4htE7NtGbs5qAvvlYGBgYWzMmm8nyawYluWiFGBgYRzJWJYWTgxeFQ2YYGBgHMKpTTJqa1eJaob+BgYGxNSMJl737q2pizf8NDAyMjRi97evkcNjk82FgYJzGWDVR9ZV5ka6wEgwMjO0YeREtD5R5Ilj9ZF9aAhgYGJsyqmlcXmKbbFx7TQgMDIxdGdVl9RLEPNTm22MMDIxzGJNEMA+j1Y1rfvgjqgJiYGBsx1hV0M/bCdWS3MfPhIGBcQxjNFFQ3P9dWxQDA+McRn60a77c/HjHKDXEwMC4OWNSoO+N6kKbnVgMDIyNGJNmQF56ywtty5aLgYGxHWN+XiNfYrVsVyjtYWBgHMAoHGsIlt5LK5ftxTEwMDBazc5e46HQQsDAwMAobizzNmcCjqgYGBgHMPKUrtfOzJuj1bQSAwPjBEa+dcw3scniekvPD3ZgYGBswfgHALvRP47apHcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

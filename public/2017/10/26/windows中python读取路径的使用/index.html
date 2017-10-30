@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>windows中python读取路径的使用 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python3">
+    <meta name="description" content="由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读取文件在Linux和windows的行为不一样。">
+<meta name="keywords" content="python3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows中python读取路径的使用">
+<meta property="og:url" content="/2017/10/26/windows中python读取路径的使用/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读取文件在Linux和windows的行为不一样。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-26T15:47:20.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows中python读取路径的使用">
+<meta name="twitter:description" content="由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读取文件在Linux和windows的行为不一样。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">windows中python读取路径的使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">windows中python读取路径的使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-26T15:40:14.000Z" itemprop="datePublished" class="page-time">
+  2017-10-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录中的斜杠们"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录中的斜杠们</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正则表达式中的斜杠们"><span class="post-toc-number">2.</span> <span class="post-toc-text">正则表达式中的斜杠们</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-windows中python读取路径的使用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">windows中python读取路径的使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-26 23:40:14" datetime="2017-10-26T15:40:14.000Z"  itemprop="datePublished">2017-10-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读取文件在Linux和windows的行为不一样。<br><a id="more"></a></p>
+</blockquote>
+<p>首先，”/“左倾斜是正斜杠,”\”右倾斜是反斜杠,可以记为：除号是正斜杠一般来说对于目录分隔符，Unix和Web用正斜杠/，Windows用反斜杠，但是现在Windows</p>
+<h2 id="目录中的斜杠们"><a href="#目录中的斜杠们" class="headerlink" title="目录中的斜杠们"></a>目录中的斜杠们</h2><p>python读文件需要输入的目录参数，列出以下例子：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">path = <span class="string">r"C:\Windows\temp\readme.txt"</span></div><div class="line">path1 = <span class="string">r"c:\windows\temp\readme.txt"</span></div><div class="line">path2 = <span class="string">"c:\\windows\\temp\\readme.txt"</span></div><div class="line">path3 = <span class="string">"c:/windows/temp/readme.txt"</span></div></pre></td></tr></table></figure></p>
+<p>打开文件函数open()中的参数可以是path也可以是path1、path2、path3。</p>
+<p>path：”\”为字符串中的特殊字符，加上r后变为原始字符串，则不会对字符串中的”\t”、”\r”进行字符串转义</p>
+<p>path1：大小写不影响windows定位到文件</p>
+<p>path3：用正斜杠做目录分隔符也可以转到对应目录，并且在python中path3的方式也省去了反斜杠\转义的烦恼</p>
+<h2 id="正则表达式中的斜杠们"><a href="#正则表达式中的斜杠们" class="headerlink" title="正则表达式中的斜杠们"></a>正则表达式中的斜杠们</h2><p>正则表达式匹配反斜杠”\”，为什么是”\\“或是 r”\“呢？</p>
+<p>因为在正则表达式中\为特殊符号，为了取消它在正则表达式中的特殊意义需要加一个\就变成了\，但是问题又来了，\也是字符串中的特殊字符，所以又要分别对两个\取消其特殊意义，即为\\。Python中有一个原始字符串操作符，用于那些字符串中出现特殊字符，在原始字符串中，没有转义字符和不能打印的字符。这样就可以取消了\在字符串中的转义功能，即r”\“。</p>
+<p>传送门：</p>
+<p><a href="https://zhidao.baidu.com/question/240654949866727964.html" target="_blank" rel="external">python 对反斜杠的处理问题</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-26T15:47:20.342Z" itemprop="dateUpdated">2017-10-26 23:47:20</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3/">python3</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/26/windows中python读取路径的使用/&title=《windows中python读取路径的使用》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/26/windows中python读取路径的使用/&title=《windows中python读取路径的使用》 — Vinson-sheep博客&source=
+由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/26/windows中python读取路径的使用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《windows中python读取路径的使用》 — Vinson-sheep博客&url=/2017/10/26/windows中python读取路径的使用/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/26/windows中python读取路径的使用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/26/flask中file-save小坑/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">flask中file.save小坑</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/26/windows中python读取路径的使用/&title=《windows中python读取路径的使用》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/26/windows中python读取路径的使用/&title=《windows中python读取路径的使用》 — Vinson-sheep博客&source=
+由于我是主攻前端的，一般的页面开发会在windons系统上。然而有不得不写后端的时候，比如前端需要api进行调试。我实际学习的时候，我发现python读..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/26/windows中python读取路径的使用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《windows中python读取路径的使用》 — Vinson-sheep博客&url=/2017/10/26/windows中python读取路径的使用/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/26/windows中python读取路径的使用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3aS24CQQwFQO5/aSJlFSnK6NluUPBUrxAiQxcLx7/HIz7P7/PX658n+Xz+nMMHAwPjYxnPy/P7K6/fSS5a/Tmu74aBgXEfxqkgm4TL/AnJ3TAwMDCur5iE6Tx8Y2BgYJwNuPkT5sUtBgYGRl7E5olgNe3L09ADtTgGBsYHMuaDgde9fut8AwMD418ynm8/SZFcfiYGBsZqRrWhn6R9ednZS0YL18LAwFjEqA4DqssW1dEmBgYGRjXkVavFPIhXk8U/38fAwFjNqIbLakA8ta7RbL1hYGAsZVTXtvJgmmR0vW4/BgbGbkYvvcsXIyZrFoWFMwwMjNWMfNEhIeWXzgcJhWQUAwNjKWMyeqymd6dGCBgYGHdj9AJltT2XB+tqsoiBgXEHRtKOf92yRa+sjWpxDAyM1YxTqd5kRpEvbWBgYNyBkQwUe5frjTZH5SsGBsZSRvXPeuOB/KdpNvgwMDBWM6pFaR4i81bavJGHgYFxB0Z+3WpT7OzSRqF8xcDAWMpoTj7jQDx5ctSAw8DAWM1Iys68JXdqPJAHawwMjN2MZ/H0fqHJoDT6Z4CBgbGakZ/8y+Zjy95SGgYGxm5GEgonKxe9EWY54GJgYNyAkTS5JmPIcuOsWmZjYGBgxO2wychz1JLDwMDACBK13ghz/j4GBsZ9GHkhWl3Yqnb+mkMIDAyM1YzqYGDenus9p7eigYGB8eGML41Uf61/H7VbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

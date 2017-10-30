@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript对象（四）——检测属性 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,js对象">
+    <meta name="description" content="in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object.keys()和Object.getOwnPropertyNames()。">
+<meta name="keywords" content="javascript,js对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript对象（四）——检测属性">
+<meta property="og:url" content="/2017/10/05/Javascript对象（四）——检测属性/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object.keys()和Object.getOwnPropertyNames()。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-05T11:34:20.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript对象（四）——检测属性">
+<meta name="twitter:description" content="in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object.keys()和Object.getOwnPropertyNames()。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript对象（四）——检测属性</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript对象（四）——检测属性</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-05T10:22:26.000Z" itemprop="datePublished" class="page-time">
+  2017-10-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#in运算符"><span class="post-toc-number">1.</span> <span class="post-toc-text">in运算符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hasOwnProperty-方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">hasOwnProperty()方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#propertyIsEnumerable-方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">propertyIsEnumerable()方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开个玩笑"><span class="post-toc-number">4.</span> <span class="post-toc-text">开个玩笑</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object-keys"><span class="post-toc-number">5.</span> <span class="post-toc-text">Object.keys()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Object-getOwnPropertyNames"><span class="post-toc-number">6.</span> <span class="post-toc-text">Object.getOwnPropertyNames()</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript对象（四）——检测属性"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript对象（四）——检测属性</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-05 18:22:26" datetime="2017-10-05T10:22:26.000Z"  itemprop="datePublished">2017-10-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object.keys()和Object.getOwnPropertyNames()。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="in运算符"><a href="#in运算符" class="headerlink" title="in运算符"></a>in运算符</h2><p>in运算符的左侧是属性名（字符串），右侧是对象。如果对象的自由属性或继承属性中包含这个属性则返回<code>true</code>。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var <span class="attr">o</span> = &#123; x:<span class="number">1</span> &#125;;</div><div class="line"><span class="string">"x"</span> <span class="keyword">in</span> o;     // <span class="literal">true</span>: <span class="string">"x"</span>是o的属性</div><div class="line"><span class="string">"y"</span> <span class="keyword">in</span> o;     // <span class="literal">false</span>: <span class="string">"y"</span>不是o的属性</div><div class="line"><span class="string">"toString"</span> <span class="keyword">in</span> o;  // <span class="literal">true</span>: o继承<span class="built_in">toString</span>属性</div></pre></td></tr></table></figure></p>
+<p>出来使用in运算符之外，另一种更简便的方法是使用<code>“!==”</code>判断一个属性是否是<code>undefined</code>：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123; x: <span class="number">1</span> &#125;;         </div><div class="line">o.x !== <span class="literal">undefined</span>;          <span class="comment">// true</span></div><div class="line">o.y !== <span class="literal">undefined</span>;          <span class="comment">// false</span></div><div class="line">o.toString !== <span class="literal">undefined</span>;   <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>然而有一种场景只能使用in运算符而不能使用上述属性访问的方式。in可以区分不存在的属性和存在但值为<code>undefined</code>的属性。例如下面的代码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = &#123; x: <span class="literal">undefined</span> &#125;; <span class="comment">//属性被显式赋值为undefined</span></div><div class="line">o.x !== <span class="literal">undefined</span>;        <span class="comment">// false</span></div><div class="line">o.y !== <span class="literal">undefined</span>;        <span class="comment">// false</span></div><div class="line"><span class="string">"x"</span> <span class="keyword">in</span> o;                 <span class="comment">// true</span></div><div class="line"><span class="string">"y"</span> <span class="keyword">in</span> o;                 <span class="comment">// false</span></div><div class="line"><span class="keyword">delete</span> o.x;               <span class="comment">// 删除了属性x</span></div><div class="line"><span class="string">"x"</span> <span class="keyword">in</span> o;                 <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<h2 id="hasOwnProperty-方法"><a href="#hasOwnProperty-方法" class="headerlink" title="hasOwnProperty()方法"></a>hasOwnProperty()方法</h2><p>对象的<code>hasOwnProperty()</code>方法是用来检测给定的名字是否是对象的自有属性。对于继承属性它将返回<code>false</code>:<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var <span class="attr">o</span> = &#123; x: <span class="number">1</span> &#125;;</div><div class="line">o.hasOwnProperty(<span class="string">"x"</span>);  // <span class="literal">true</span>: o有一个自有属性x</div><div class="line">o.hasOwnProperty(<span class="string">"y"</span>);  // <span class="literal">false</span>: o中不存在属性y</div><div class="line">o.hasOwnProperty(<span class="string">"toString"</span>); // <span class="literal">false</span>: <span class="built_in">toString</span>是继承属性</div></pre></td></tr></table></figure></p>
+<h2 id="propertyIsEnumerable-方法"><a href="#propertyIsEnumerable-方法" class="headerlink" title="propertyIsEnumerable()方法"></a>propertyIsEnumerable()方法</h2><p><code>propertyIsEnumerable()</code>是<code>hasOwnProperty()</code>的增强版，只有检测到是自有属性且这个属性的可枚举性为<code>true</code>时它才返回<code>true</code>。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var <span class="attr">o</span> = <span class="keyword">inherit</span>(&#123; y:<span class="number">2</span> &#125;);</div><div class="line">o.<span class="attr">x</span> = <span class="number">1</span>;</div><div class="line">o.propertyIsEnumerable(<span class="string">"x"</span>);  // <span class="literal">true</span>: o有一个可枚举的自有属性x</div><div class="line">o.propertyIsEnumerable(<span class="string">"y"</span>);  // <span class="literal">false</span>: y是继承过来的</div><div class="line">Object.prototype.propertyIsEnumerable(<span class="string">"toString"</span>);  // <span class="literal">false</span>: 不可枚举</div></pre></td></tr></table></figure></p>
+<h2 id="开个玩笑"><a href="#开个玩笑" class="headerlink" title="开个玩笑"></a>开个玩笑</h2><p>看下面代码：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty(<span class="string">"has.OwnProperty"</span>);  <span class="comment">// =&gt; true</span></div><div class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty(<span class="string">"propertyIsEnumerable"</span>);  <span class="comment">// =&gt; true</span></div></pre></td></tr></table></figure></p>
+<h2 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h2><p>ECMAScript 5定义了两个用以枚举属性名称的函数。</p>
+<p>第一个是<code>Object.keys()</code>,这个函数返回一个数组，这个数组由对象中可枚举的自由属性的名称组成。</p>
+<h2 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h2><p>这个函数返回对象的所有自有属性的名称，而不仅仅是可枚举的属性。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-05T11:34:20.270Z" itemprop="dateUpdated">2017-10-05 19:34:20</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js对象/">js对象</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/05/Javascript对象（四）——检测属性/&title=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/05/Javascript对象（四）——检测属性/&title=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&source=
+in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/05/Javascript对象（四）——检测属性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&url=/2017/10/05/Javascript对象（四）——检测属性/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/05/Javascript对象（四）——检测属性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/05/Javascript对象（五）——存取器属性/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript对象（五）——存取器属性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/05/Javascript对象（三）——删除属性delete/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript对象（三）——删除属性delete</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/05/Javascript对象（四）——检测属性/&title=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/05/Javascript对象（四）——检测属性/&title=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&source=
+in运算符、hasOwnProperty()方法和propertyIsEnumerable()方法。顺便介绍另外两个偏门的枚举属性的方法：Object...." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/05/Javascript对象（四）——检测属性/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象（四）——检测属性》 — Vinson-sheep博客&url=/2017/10/05/Javascript对象（四）——检测属性/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/05/Javascript对象（四）——检测属性/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQXLjMAwEwPz/095Lbt5VzQD2VolqnlIxI6F9QACQPz/xer2t90+v97/vef/b650fWBgYGLdlvC5XEtYGdv20ZD8GBsZzGEkqTD5N0mubgq/3YGBgYOSkZH+brDEwMDD2CTcJ4ropxcDAwMgZszY1L/Xa9P3FXhwDA+OGjHzq/v9//sr5BgYGxq0Yr3LNSsPvxfP7fAwMjKMZ+cvyQ81NCbiJBwMD42mMNqy2AY7CKpM7BgbG2Yz8cUlzO0u7q6IQAwPjAYxZumyvTeTvuv593QFjYGAcwbh+xKyVTYrC/CJFQcLAwDia0RZqUTMZBDErIj92woCBgXFDRjvemg3g2qKz/ceAgYFxHiMvxdrEmh82bI5CMTAwzmbsx1tJwp0djhZRYWBgHM2YzdjzFNmm6bZ9XR0VYGBg3IoxS5Sz4PJkOiwQMTAwjmbk463ZhYw8Zedv+UvCxcDAOI6RpNe8gZyN5Irzin+lXQwMjKMZbeu4yuuLo9Diy8LAwDiU0Y7JZoP79vf5V4mBgfEcRjtomw3IZpiolMTAwHgAIyftG93izlreKmNgYBzKmA3o2wJuE2jExsDAOJqRr9kliTYdfyxcDAyM4xjtRYfNzrbdLVpiDAyMBzDaxNdeI9u0vnUvjoGBgbE4kpw1wNHzMTAwMMoycXNpY0jFwMB4AKMt6ZLXzNJ3EgMGBsbTGHkB942BWhv6pgzFwMC4IeMPISRgvj96PcsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

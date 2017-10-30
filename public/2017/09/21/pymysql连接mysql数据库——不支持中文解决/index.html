@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>pymysql连接mysql数据库——不支持中文解决 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql,pymysql,python">
+    <meta name="description" content="在mysql的学习中，我用本地的win10搭建了环境。当要将中文字符输入到mysql数据库中，就会报错。上网找了一下方法，完美解决。mysql5.7 windows10  往数据库里插入中文时出现异常:1UnicodeEncodeError: &apos;latin-1&apos; codec can&apos;t encode characters 就是编码的问题,pymysql默认的编码是latin1,我们只需要把它改成">
+<meta name="keywords" content="mysql,pymysql,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pymysql连接mysql数据库——不支持中文解决">
+<meta property="og:url" content="/2017/09/21/pymysql连接mysql数据库——不支持中文解决/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="在mysql的学习中，我用本地的win10搭建了环境。当要将中文字符输入到mysql数据库中，就会报错。上网找了一下方法，完美解决。mysql5.7 windows10  往数据库里插入中文时出现异常:1UnicodeEncodeError: &apos;latin-1&apos; codec can&apos;t encode characters 就是编码的问题,pymysql默认的编码是latin1,我们只需要把它改成">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-25T13:35:49.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pymysql连接mysql数据库——不支持中文解决">
+<meta name="twitter:description" content="在mysql的学习中，我用本地的win10搭建了环境。当要将中文字符输入到mysql数据库中，就会报错。上网找了一下方法，完美解决。mysql5.7 windows10  往数据库里插入中文时出现异常:1UnicodeEncodeError: &apos;latin-1&apos; codec can&apos;t encode characters 就是编码的问题,pymysql默认的编码是latin1,我们只需要把它改成">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">pymysql连接mysql数据库——不支持中文解决</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">pymysql连接mysql数据库——不支持中文解决</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-21T10:52:28.000Z" itemprop="datePublished" class="page-time">
+  2017-09-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更改pymysql配置文件"><span class="post-toc-number">1.</span> <span class="post-toc-text">更改pymysql配置文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据库连接"><span class="post-toc-number">2.</span> <span class="post-toc-text">数据库连接</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-pymysql连接mysql数据库——不支持中文解决"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">pymysql连接mysql数据库——不支持中文解决</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-21 18:52:28" datetime="2017-09-21T10:52:28.000Z"  itemprop="datePublished">2017-09-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在mysql的学习中，我用本地的win10搭建了环境。当要将中文字符输入到mysql数据库中，就会报错。上网找了一下方法，完美解决。<br>mysql5.7 windows10</p>
+</blockquote>
+<p>往数据库里插入中文时出现异常:<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UnicodeEncodeError: <span class="symbol">'latin</span>-<span class="number">1</span>' codec can<span class="symbol">'t</span> encode characters</div></pre></td></tr></table></figure></p>
+<p>就是编码的问题,pymysql默认的编码是latin1,我们只需要把它改成utf8就好了</p>
+<h2 id="更改pymysql配置文件"><a href="#更改pymysql配置文件" class="headerlink" title="更改pymysql配置文件"></a>更改pymysql配置文件</h2><ol>
+<li>打开Python的安装目录:<br><code>Python34\Lib\site-packages\PyMySQL-0.7.9-py3.4.egg\pymysql</code></li>
+<li>用记事本打开connections.py文件,找到里面的DEFAULT_CHARSET,后面默认=’latin1’,改成utf8就好了,<strong>注意是utf8不是utf-8</strong>。</li>
+</ol>
+<p>PS：ubuntu中的路径为：<code>usr/local/lib/python3.4/dist-packages/pymysql/connections.py</code></p>
+<p>然而解决了问题了吗？并没有，就算我把connections.py文件所有的latin-1更改为utf8，运行py文件读写数据库依然报错。</p>
+<p>于是有了下面的方法：</p>
+<h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">db</span> = pymysql.connect(<span class="string">'localhost'</span>, username, password, database)</div></pre></td></tr></table></figure>
+<p>改为<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">db</span> = pymysql.connect(<span class="string">'localhost'</span>, username, password, database,use_unicode=<span class="literal">True</span>, charset=<span class="string">"utf8"</span>)</div></pre></td></tr></table></figure></p>
+<p>解决</p>
+<p><a href="http://www.cnblogs.com/shootercheng/p/5836657.html" target="_blank" rel="external">参考资料——博客园</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-25T13:35:49.593Z" itemprop="dateUpdated">2017-10-25 21:35:49</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pymysql/">pymysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&title=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&title=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&source=分享技术和生活的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/21/Nginx-uWSGI-flask部署app环境/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Nginx+uWSGI+flask部署app环境</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/21/hexo主题indigo——配置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">hexo主题indigo——配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&title=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&title=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&source=分享技术和生活的博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pymysql连接mysql数据库——不支持中文解决》 — Vinson-sheep博客&url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/pymysql连接mysql数据库——不支持中文解决/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3a204DMQwFQP7/p0HiCYnu9tiOS5EmT6iXTSZIiWv74yMen9/j/pWfr/989+q7v8f9u1czHhh4eHh4raX3przfiKsnJO8mWxatCg8PD2+Nlyw0OfSTxeUXSXVePDw8vHfjVcPrfLMmW4CHh4f3X3j5BHlgXX0OHh4e3t/ykmRE8vke5n49o6sFDw8Pb4FXLYC9w9+L9T08PDy8QVX9/sDNg+zqod+7ih48GQ8PD2+BNyky5WWq+6arXstXocyGh4eHt8ZLll6lVpPFvQj5SfCNh4eHt8ybtwJMylo5pnCR4OHh4R3lzcPfalEqCcd7aygH03h4eHhjXjWonRzfvcashP3kxsPDw8Nb4OU/8pPyVcLohdrNiwEPDw9vzJuMaqg9f1qv+RUPDw/vLG+SCMinmSQa8qD8Mo2Lh4eHd5RXDV6TsLiXSsiTv+VAHA8PD+8orxfI5mmLeaPVKLWBh4eHt8bL75BqYJ23ribXQ7LpeHh4eK/k9Y776tLzdoRqSuLBLHh4eHjLvHzp+aYkCYU8HC+H7Hh4eHgLvL0DvdrAmhfDekE2Hh4e3gavlz6oLiIvfVWfcCwfjIeHhxdfBvkF0Auaq7P3ynJ4eHh427zJUd57vZpKqG5f+RcDHh4eXouXBMd5K+qkXXUjfYyHh4d3lncq/D116OehdpQKwcPDw3s5Lz/Qq4d+ngTJr5DLGw8PDw/vKC9Pkk4araqFt146GA8PD+81vM/imOxcktSY/JcevIuHh4e3wMvHPOzOi2295EUThoeHh9fiJZdB7wLYaCMopHHx8PDwlnnzQ7mXhE2+27u08PDw8N6Bl6ck5qW13nouQ2o8PDy8P+XlmGo5baM1AQ8PD2+PlycjqoFvr4SWz/Vk+/Dw8PAWeJMCWBLsJhMfa7TqDTw8PLz0819DKodcji/TwQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

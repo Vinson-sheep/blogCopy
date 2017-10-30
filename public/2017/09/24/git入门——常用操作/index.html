@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>git入门——常用操作 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="github,git">
+    <meta name="description" content="看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。">
+<meta name="keywords" content="github,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git入门——常用操作">
+<meta property="og:url" content="/2017/09/24/git入门——常用操作/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-24T15:00:32.640Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git入门——常用操作">
+<meta name="twitter:description" content="看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">git入门——常用操作</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">git入门——常用操作</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-24T05:50:03.000Z" itemprop="datePublished" class="page-time">
+  2017-09-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网站维护/">网站维护</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#日常操作"><span class="post-toc-number">1.</span> <span class="post-toc-text">日常操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分支的使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">分支的使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工作现场stash"><span class="post-toc-number">3.</span> <span class="post-toc-text">工作现场stash</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#标签tag"><span class="post-toc-number">4.</span> <span class="post-toc-text">标签tag</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#远程协作"><span class="post-toc-number">5.</span> <span class="post-toc-text">远程协作</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-git入门——常用操作"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">git入门——常用操作</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-24 13:50:03" datetime="2017-09-24T05:50:03.000Z"  itemprop="datePublished">2017-09-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网站维护/">网站维护</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="日常操作"><a href="#日常操作" class="headerlink" title="日常操作"></a>日常操作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git add filename <span class="comment">#添加文件</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">"some message"</span> <span class="comment">#提交文件</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git status <span class="comment">#查看状态</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git diff <span class="comment">#查看修改内容</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --pretty=oneline <span class="comment">#查看提交记录</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git reset --hard HEAD^ <span class="comment">#退回上一个版本</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git reflog <span class="comment">#查看命令历史</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout -- filename <span class="comment">#丢弃工作区的修改</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git reset HEAD filename <span class="comment">#丢弃缓存区的修改</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git rm filename <span class="comment">#删除文件</span></span></div></pre></td></tr></table></figure>
+<h2 id="分支的使用"><a href="#分支的使用" class="headerlink" title="分支的使用"></a>分支的使用</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git branch dev <span class="comment">#创建分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout dev <span class="comment">#切换分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout -b dev <span class="comment">#创建并切换分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git branch <span class="comment">#查看分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git merge dev <span class="comment">#合并分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git branch -d dev <span class="comment">#删除分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git merge --no-ff -m <span class="string">"some message"</span> dev <span class="comment">#合并的同时commit</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin master <span class="comment">#推送master主分支</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin dev <span class="comment">#推送dev分支</span></span></div></pre></td></tr></table></figure>
+<h2 id="工作现场stash"><a href="#工作现场stash" class="headerlink" title="工作现场stash"></a>工作现场stash</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git stash <span class="comment">#存储工作现场</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git stash list <span class="comment">#查看工作现场</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git stash apply <span class="comment">#恢复工作现场</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git stash drop <span class="comment">#删除工作现场</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git stash pop <span class="comment">#恢复和删除工作现场</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git stash apply stash@&#123;0&#125; <span class="comment">#恢复指定stash</span></span></div></pre></td></tr></table></figure>
+<h2 id="标签tag"><a href="#标签tag" class="headerlink" title="标签tag"></a>标签tag</h2><p>标签可以用来管理版本号，一般标记在master分支上<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git tag v1.0 <span class="comment">#为当前分支打上标签</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git tag <span class="comment">#查看所有标签</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git tag v0.9 6224937 <span class="comment">#为指定commit打上标签</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git tag -a v0.1 -m <span class="string">"version 0.1 released"</span> 3628164 <span class="comment">#附带信息</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git show v0.9 <span class="comment">#查看标签信息</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git tag -d v0.1 <span class="comment">#本地删除标签</span></span></div><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin v1.0 <span class="comment">#远程推送标签</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin --tags <span class="comment">#远程推送所有标签</span></span></div><div class="line"></div><div class="line">删除远程标签</div><div class="line">// 先从本地删除</div><div class="line"><span class="meta">$</span><span class="bash"> git tag -d &lt;tagname&gt;</span></div><div class="line">// 再从远程删除</div><div class="line"><span class="meta">$</span><span class="bash"> git push origin :refs/tags/&lt;tagname&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="远程协作"><a href="#远程协作" class="headerlink" title="远程协作"></a>远程协作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//克隆远程仓库</div><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> git@github.com:michaelliao/learngit.git</span></div><div class="line"></div><div class="line">//创建本地dev分支</div><div class="line"><span class="meta">$</span><span class="bash"> git checkout -b dev origin/dev</span></div><div class="line"></div><div class="line">对dev修改后可以推送提交</div><div class="line"></div><div class="line">//推送dev分支</div><div class="line"><span class="meta">$</span><span class="bash"> git push origin dev</span></div><div class="line"></div><div class="line">如果其他人已经推送了新的版本，会显示有冲突</div><div class="line"></div><div class="line">//将其他人最新的提交抓去下来</div><div class="line"><span class="meta">$</span><span class="bash"> git pull</span></div><div class="line"></div><div class="line">但是git pull会失败，原因是没有设置链接</div><div class="line"></div><div class="line">//建立本地分支和远程分支的关联</div><div class="line"><span class="meta">$</span><span class="bash"> git branch --<span class="built_in">set</span>-upstream branch-name origin/branch-name</span></div><div class="line"></div><div class="line">//合并库</div><div class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">"merge &amp; fix hello.py"</span></span></div><div class="line"></div><div class="line">如果有冲突，就解决掉</div><div class="line"></div><div class="line">//再次推送到dev分支上</div><div class="line"><span class="meta">$</span><span class="bash"> git push origin dev</span></div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-24T15:00:32.640Z" itemprop="dateUpdated">2017-09-24 23:00:32</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/24/git入门——常用操作/&title=《git入门——常用操作》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/24/git入门——常用操作/&title=《git入门——常用操作》 — Vinson-sheep博客&source=
+看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/24/git入门——常用操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git入门——常用操作》 — Vinson-sheep博客&url=/2017/09/24/git入门——常用操作/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/24/git入门——常用操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/24/git入门——安装/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">git入门——安装</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/22/JQuery增删cookie/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JQuery增删cookie</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/24/git入门——常用操作/&title=《git入门——常用操作》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/24/git入门——常用操作/&title=《git入门——常用操作》 — Vinson-sheep博客&source=
+看了一下廖雪峰的git教程，觉得要熟悉git的操作需要一段适应时间，于是我干脆在这里写一篇总结性的git常用操作集合，方便自己日后推送和维护项目。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/24/git入门——常用操作/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git入门——常用操作》 — Vinson-sheep博客&url=/2017/09/24/git入门——常用操作/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/24/git入门——常用操作/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByUlEQVR42u3aQW7DMAwEQP//0+m1QBFlSVpyUIxOQeHaowshLnVd8Xr9Wslf/v59/czNCxcXd8x9LVf1mfXvfKtvt4SLi3uQ+65irD+5/q9qWYzehouL+5Xc9QGlWhBxcXH/B3ddktb03vtxcXGf4lYbm/zzvUjlhl4NFxd3wM1Tyn2/t+S7uLi4Le6ruPKIZF3segsXF/cMdx5x5oeSPFj5sG1cXNzN3KSB2RGarKGFEoaLi7uNWx2g5rFIzoraJFxc3IPcSTFKBqhJ1BKNYHFxcY9wqweX+dAlaZ+iUSsuLu4Rbk7Jn+kNaKNDEi4u7jbuZHwyaZMKlfVdr4aLi3uEm5e2XlDSe+eVl2JcXNxbuYVz0OAKRR5/vN02Li7uEW5SXCZRSHX0MgpEcHFxN3CveOURZ7WcRWhcXNxHuUk4UhiIFt9QaIFwcXE3c8tRRTH07BVNXFzck9xetFEtfHmbVMh3cXFxt3HnDc/k8/kVjTIdFxd3zO0Vr8nz1e3h4uI+xV03HpMjznXvwsXF/Upu8p7kQNMLX3Bxcb+TWx2sfrhoFW8PFxf3PHdyPSu/VlX9Ci4u7lPcasfRvGoZB6M3jFVwcXH73B8njAEvYECllgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

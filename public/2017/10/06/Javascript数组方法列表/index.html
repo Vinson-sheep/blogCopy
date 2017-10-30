@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript数组方法列表 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,js数组">
+    <meta name="description" content="ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。">
+<meta name="keywords" content="javascript,js数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript数组方法列表">
+<meta property="og:url" content="/2017/10/06/Javascript数组方法列表/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-06T15:00:38.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript数组方法列表">
+<meta name="twitter:description" content="ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript数组方法列表</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript数组方法列表</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-05T17:26:25.000Z" itemprop="datePublished" class="page-time">
+  2017-10-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ECMAScript-3"><span class="post-toc-number">1.</span> <span class="post-toc-text">ECMAScript 3</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-sort"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Array.sort()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-concat"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Array.concat()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-slice"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Array.slice()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-splice"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Array.splice()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ECMAScript-5"><span class="post-toc-number">2.</span> <span class="post-toc-text">ECMAScript 5</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-forEach"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Array.forEach()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-map"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Array.map()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-filter"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Array.filter()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Array-every-和Array-some"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Array.every()和Array.some()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#reduce-和reduceRight"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">reduce()和reduceRight()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#indexOf-和lastIndexOf"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">indexOf()和lastIndexOf()</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript数组方法列表"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript数组方法列表</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-06 01:26:25" datetime="2017-10-05T17:26:25.000Z"  itemprop="datePublished">2017-10-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="ECMAScript-3"><a href="#ECMAScript-3" class="headerlink" title="ECMAScript 3"></a>ECMAScript 3</h2><ol>
+<li><code>a.join()</code>合并数组元素转换为字符串</li>
+<li><code>a.reverse()</code>反转数组</li>
+<li><code>a.sort()</code>排列数组元素</li>
+<li><code>a.concat()</code>合并多个数组</li>
+<li><code>a.slice()</code>截取数组元素并返回新数组</li>
+<li><code>a.splice()</code>数组操作万能方法</li>
+<li><code>push()</code>和<code>pop()</code>插入/删除最后一个元素</li>
+<li><code>unshift</code>和<code>shift()</code>插入/删除最后一个元素</li>
+<li><code>toString()</code>和<code>toLocaleString()</code><h3 id="Array-sort"><a href="#Array-sort" class="headerlink" title="Array.sort()"></a>Array.sort()</h3><code>Array.sort()</code>方法将数组中的元素排序并返回排序后的数组。当不带参数调用<code>sort()</code>时，数组元素以字母表顺序排序：</li>
+</ol>
+<p>如果数组包含<code>undefined</code>元素，它们会被排列到数组的尾部。</p>
+<p>为了按照其他方式而非字母表顺序进行组排序，必须给sort()方法传递一个比较函数。</p>
+<p>假设第一个参数应该在前，比较函数应该返回一个小于0的数值。反之，假设第一个参数应该在后，函数应该返回一个大于0的数组。并且，假设两个值相等，函数应该返回0.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">33</span>, <span class="number">4</span> ,<span class="number">1111</span>, <span class="number">222</span>];</div><div class="line">a.sort();               <span class="comment">// 字母表顺序：1111,222,33,4</span></div><div class="line">a.sort(<span class="function"><span class="keyword">function</span><span class="params">(a,b)</span> </span>&#123;  <span class="comment">// 数值顺序： 4，33，222，1111</span></div><div class="line">    <span class="keyword">return</span> a-b;</div><div class="line">&#125;);</div><div class="line">a.sort(<span class="function"><span class="keyword">function</span><span class="params">(a,b)</span> </span>&#123; <span class="keyword">return</span> b-a&#125;);  <span class="comment">//数值大小相反的顺序</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-concat"><a href="#Array-concat" class="headerlink" title="Array.concat()"></a>Array.concat()</h3><p><code>Array.concat()</code>方法创建并返回一个新数组，它的元素包括调用<code>concat()</code>的原始数组的元素和concat()的每个参数。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">a.concat(<span class="number">4</span>,<span class="number">5</span>);          <span class="comment">// [1,2,3,4,5]</span></div><div class="line">a.concat([<span class="number">4</span>,<span class="number">5</span>]);        <span class="comment">// [1,2,3,4,5]</span></div><div class="line">a.concat([<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">7</span>]);  <span class="comment">// [1,2,3,4,5,6,7]</span></div><div class="line">a.concat(<span class="number">4</span>,[<span class="number">5</span>,[<span class="number">6</span>,<span class="number">7</span>]]);  <span class="comment">// [1,2,3,4,5,[6,7]]</span></div><div class="line">a                       <span class="comment">// [1,2,3]:a没有改变</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-slice"><a href="#Array-slice" class="headerlink" title="Array.slice()"></a>Array.slice()</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.slice(<span class="number">0</span>,<span class="number">3</span>);   <span class="comment">// [1,2,3]</span></div><div class="line">a.slice(<span class="number">3</span>);     <span class="comment">// [4,5]</span></div><div class="line">a.sliec(<span class="number">1.</span><span class="number">-1</span>);  <span class="comment">// [2,3,4]</span></div><div class="line">a.slice(<span class="number">-3</span>,<span class="number">-2</span>); <span class="comment">// [3]</span></div></pre></td></tr></table></figure>
+<h3 id="Array-splice"><a href="#Array-splice" class="headerlink" title="Array.splice()"></a>Array.splice()</h3><p>不同于<code>slice()</code>和<code>concat()</code>，<code>splice()</code>会修改调用的数组。</p>
+<p>如果省略第二个参数，从起始点开始到数组结尾的所有元素都将被删除。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</div><div class="line">a.splice(<span class="number">4</span>);      <span class="comment">//  返回[5,6,7,8];a是[1,2,3,4]</span></div><div class="line">a.splice(<span class="number">1</span>,<span class="number">2</span>);    <span class="comment">//  返回[2,3];a是[1,4]</span></div><div class="line">a.splice(<span class="number">1</span>,<span class="number">1</span>);    <span class="comment">//  返回[4];a是[1]</span></div><div class="line"></div><div class="line">var a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.splice(<span class="number">2</span>,<span class="number">0</span>,'a','b');  <span class="comment">// 返回[];a是[1,2,'a','b',3,4,5]</span></div><div class="line">a.splice(<span class="number">2</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>],<span class="number">3</span>);  <span class="comment">// 返回['a','b'];a是[1,2,[1,2],3,3,4,5]</span></div></pre></td></tr></table></figure></p>
+<h2 id="ECMAScript-5"><a href="#ECMAScript-5" class="headerlink" title="ECMAScript 5"></a>ECMAScript 5</h2><p>ECMAScript 5中的数组方法都不会修改它们调用的原始数组。当然，传递给这些方法的函数是可以修改这些数组的。</p>
+<ol>
+<li><code>forEach()</code>从头到尾遍历数组。</li>
+<li><code>map()</code>将每个元素传递给函数，并返回一个数组</li>
+<li><code>filter()</code>过滤函数，返回一个被过滤的数组</li>
+<li><code>every()</code>和<code>some()</code>用来判断数组属性的方法</li>
+<li><code>reduce()</code>和<code>reduceRight()</code>迭代函数</li>
+<li><code>indexOf()</code>和<code>lastIndexOf()</code>搜索函数</li>
+</ol>
+<h3 id="Array-forEach"><a href="#Array-forEach" class="headerlink" title="Array.forEach()"></a>Array.forEach()</h3><p>这个函数可以修改原始数组。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]; <span class="comment">// 要求和的数组</span></div><div class="line"><span class="comment">// 计算数组元素的和值</span></div><div class="line"><span class="keyword">var</span> sum = <span class="number">0</span>;            <span class="comment">// 初始化为0</span></div><div class="line">data.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span><span class="params">(value)</span> </span>&#123; sum += value; &#125;);</div><div class="line">                        <span class="comment">// 将每个值累加在sum上</span></div><div class="line">sum;                    <span class="comment">// =&gt; 15</span></div><div class="line"><span class="comment">//每个数组元素自加1</span></div><div class="line">data.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span><span class="params">(v,i,a)</span> </span>&#123;a[i]=v+<span class="number">1</span>&#125;);</div><div class="line">data                    <span class="comment">// =&gt; [2,3,4,5,6]</span></div></pre></td></tr></table></figure></p>
+<p>这个方法的遍历如需终止，需要将方法放在try块中。（犀牛书p156）</p>
+<h3 id="Array-map"><a href="#Array-map" class="headerlink" title="Array.map()"></a>Array.map()</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">b = a.map(<span class="function"><span class="keyword">function</span><span class="params">(x)</span> </span>&#123;<span class="keyword">return</span> x*x; &#125;); <span class="comment">// b是[1,4,9]</span></div></pre></td></tr></table></figure>
+<h3 id="Array-filter"><a href="#Array-filter" class="headerlink" title="Array.filter()"></a>Array.filter()</h3><p>函数的返回值如果是true或者是能转换为true值，那么传递给判定函数的元素就是这个子集的成员，它将被添加到一个作为返回值的数组中。例如：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>];</div><div class="line">smallvalues = a.filter(<span class="function"><span class="keyword">function</span><span class="params">(x)</span> </span>&#123;<span class="keyword">return</span> x&lt;<span class="number">3</span>&#125;); <span class="comment">// [2,1]</span></div><div class="line">everyother = a.filter(<span class="function"><span class="keyword">function</span><span class="params">(x,i)</span> </span>&#123;<span class="keyword">return</span> i&amp;<span class="number">2</span>==<span class="number">0</span>&#125;); <span class="comment">// [5,3,1]</span></div></pre></td></tr></table></figure></p>
+<h3 id="Array-every-和Array-some"><a href="#Array-every-和Array-some" class="headerlink" title="Array.every()和Array.some()"></a>Array.every()和Array.some()</h3><p><code>every()</code>和<code>some()</code>方法是数组的逻辑判定：它们对数组元素应用指定的函数进行判定，返回<code>true</code>或<code>false</code>。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.every(<span class="function"><span class="keyword">function</span><span class="params">(x)</span> </span>&#123; <span class="keyword">return</span> x &lt; <span class="number">10</span>; &#125;);      <span class="comment">// true:所有的值&lt;10</span></div><div class="line">a.every(<span class="function"><span class="keyword">function</span><span class="params">(x)</span> </span>&#123; <span class="keyword">return</span> x * <span class="number">2</span> === <span class="number">0</span>;&#125;);  <span class="comment">// fasle:不是所有的值都是偶数</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">a.some(function(x) &#123;return x%<span class="number">2</span>===<span class="number">0</span>;&#125;);  <span class="comment">// true</span></div><div class="line">a.some(isNaN);                          <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<h3 id="reduce-和reduceRight"><a href="#reduce-和reduceRight" class="headerlink" title="reduce()和reduceRight()"></a>reduce()和reduceRight()</h3><p><code>reduce()</code>和<code>reduceRight()</code>方法使用指定的函数将数组元素进行组合，生成单个值。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">var</span> sum = a.reduce(<span class="function"><span class="keyword">function</span><span class="params">(x,y)</span> </span>&#123;<span class="keyword">return</span> x+y &#125;, <span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>这里的x可以看作是迭代的值，y是元素，第二个参数0是x的初始值。</p>
+<p><code>reduceRight()</code>工作原理和<code>reduce()</code>一样，不同的是它按照数组索引从高到低处理数组，而不是从低到高。</p>
+<h3 id="indexOf-和lastIndexOf"><a href="#indexOf-和lastIndexOf" class="headerlink" title="indexOf()和lastIndexOf()"></a>indexOf()和lastIndexOf()</h3><p><code>indexOf()</code>和<code>lastIndexOf()</code>搜索整个数组中具有给定值的元素，<strong>返回找到的第一个元素的索引或者如果没有找到就返回-1</strong>。<code>indexOf()</code>从头到尾搜索，而’lastIndexOf()’则反向搜索。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>];</div><div class="line">a.indexOf(<span class="number">1</span>);     <span class="comment">// =&gt; 1: a[1]是1</span></div><div class="line">a.lastIndexOf(<span class="number">1</span>); <span class="comment">// =&gt; 3: a[3]是1</span></div><div class="line">a.indexOf(<span class="number">3</span>);     <span class="comment">// =&gt; -1: 没有值为3的元素</span></div></pre></td></tr></table></figure></p>
+<p><code>indexOf()</code>和<code>lastIndexOf()</code>可以提供第二个参数，指定从那个索引开始搜索。利用第二个参数可以搜索全部的值的索引。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pos</span> = a.indexOf(x, pos);</div></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-06T15:00:38.737Z" itemprop="dateUpdated">2017-10-06 23:00:38</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js数组/">js数组</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/06/Javascript数组方法列表/&title=《Javascript数组方法列表》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/06/Javascript数组方法列表/&title=《Javascript数组方法列表》 — Vinson-sheep博客&source=
+ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/06/Javascript数组方法列表/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript数组方法列表》 — Vinson-sheep博客&url=/2017/10/06/Javascript数组方法列表/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/06/Javascript数组方法列表/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/07/Javascript自定义函数属性/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript自定义函数属性</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/05/Javascript对象（七）——对象的三个属性/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript对象（七）——对象的三个属性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/06/Javascript数组方法列表/&title=《Javascript数组方法列表》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/06/Javascript数组方法列表/&title=《Javascript数组方法列表》 — Vinson-sheep博客&source=
+ECMAScript 3在Array.prototype中定义了一些很有用的操作数组的函数，ECMAScript 5新新增了一些新的数组遍历方法。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/06/Javascript数组方法列表/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript数组方法列表》 — Vinson-sheep博客&url=/2017/10/06/Javascript数组方法列表/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/06/Javascript数组方法列表/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByUlEQVR42u3aS27DMAwFwNz/0u62QGLlkSqFpBitAju2RxuCHz0e8bp+recrz3fvnnq++5hYuLi429xrudbcuw8n/082/2JLuLi4B7nrQJPT12/ON3x7HRcX9yO5SYKyDoi4uLj/lbuGrtG4uLjfwk2Kn6TU6RU2I7UaLi7uBrcXnv7290h/FxcXt8W9imunKLq2Fy4u7hluHlB6TdJewfNmTIuLi3uc2wth1QFtMm6Jhqy4uLhj3LkEpRq8yk/h4uIOcPMhx1+1NpKgdvtFXFzc49zqGDUJW9VE6s2zuLi4B7m9wxN5mMvbH+X+DS4u7hi3ejwiD3B5+tKMu7i4uAPc6UNXeYM1L5BwcXGnuXlqUh2E5C3RJFy+KH5wcXHHuNVkpdpg3T+KETVrcHFxB7j5AYteIbTTdikUP7i4uEe4hVZm8T1b28DFxT3O3b/SK6LyEQsuLu409yquXmuj2jZ9E8JwcXGHudWA0mubTqREuLi409xq8MpbnL3jGmsJLi7uSW7vw9XtbSUuuLi4X8JNNpBstTBcwcXF/UjufvO0WixtpTi4uLgb3KT4qSY91YwlSphwcXGPcHsVR7LJ/Nl8MIOLizvM/QHHFFLBTVf5fwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

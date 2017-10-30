@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript对象转换为原始值详解 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf，情况相当复杂。就此做知识归纳。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript对象转换为原始值详解">
+<meta property="og:url" content="/2017/09/30/Javascript对象转换为原始值详解/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf，情况相当复杂。就此做知识归纳。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T07:04:12.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript对象转换为原始值详解">
+<meta name="twitter:description" content="对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf，情况相当复杂。就此做知识归纳。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript对象转换为原始值详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript对象转换为原始值详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-30T05:30:52.000Z" itemprop="datePublished" class="page-time">
+  2017-09-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toString-NaN"><span class="post-toc-number">1.</span> <span class="post-toc-text">toString()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#valueOf-NaN"><span class="post-toc-number">2.</span> <span class="post-toc-text">valueOf()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对象与运算符"><span class="post-toc-number">3.</span> <span class="post-toc-text">对象与运算符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原则"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">原则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#日期对象"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">日期对象</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript对象转换为原始值详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript对象转换为原始值详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-30 13:30:52" datetime="2017-09-30T05:30:52.000Z"  itemprop="datePublished">2017-09-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf，情况相当复杂。就此做知识归纳。<br><a id="more"></a></p>
+</blockquote>
+<p>所有的对象继承了两个转换方法。第一个是<code>toString()</code>,它的作用是返回一个反映这个对象的字符串。</p>
+<p>另一个转换对象的函数是<code>valueOf()</code>。默认的<code>valueOf()</code>方法简单地返回对象本身。</p>
+<p>下面对这两个函数进行详细分析：</p>
+<h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h2><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>不同的对象对<code>toString()</code>的实现不一样：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="params">(&#123;x:1, y:2&#125;)</span><span class="string">.toString</span><span class="params">()</span>   <span class="string">//</span> =&gt; <span class="string">"[object, Object]"</span></div><div class="line">[1,2,3]<span class="string">.toString</span><span class="params">()</span>    <span class="string">//</span> =&gt; <span class="string">"1,2,3"</span></div><div class="line"><span class="params">(function(x)</span> &#123; f<span class="params">(x)</span>; &#125;)<span class="string">.toString</span><span class="params">()</span>    <span class="string">//</span> =&gt; <span class="string">"function(x) &#123;\n f(x);\n&#125;"</span></div><div class="line">/\d+<span class="string">/g.toString</span><span class="params">()</span>   <span class="string">//</span> =&gt; <span class="string">"/\\d+/g"</span></div><div class="line">new Date<span class="params">(2010,0,1)</span><span class="string">.toString</span><span class="params">()</span>   <span class="string">//</span> =&gt; <span class="string">"Fri Jan 01 2010 00:00:00 GMT-0800 (PST)"</span></div></pre></td></tr></table></figure></p>
+<p>从上面的实例可以发现，对于一般对象{}，函数返回的字符串确实没有太大价值意义。而function和RegExp直接返回的是实现定义和直接量字符串，Date对象则通过一定的规则转换后得到近似于直接量的字符串。数字[]则是使用了join(“,”)方法，将各个子值拼在一起。</p>
+<h2 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h2><h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="comment">&#123;x:1, y:2&#125;</span>).valueOf()   <span class="comment">// =&gt; Object &#123;x: 1, y: 2&#125; 对象</span></div><div class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].valueOf()   <span class="comment">// =&gt; [1, 2, 3]</span></div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span> <span class="comment">&#123; f(x); &#125;</span>).<span class="title">valueOf</span><span class="params">()</span>    <span class="comment">// =&gt; function f(x) &#123; f(x); &#125; 对象</span></span></div><div class="line"><span class="function">/\<span class="title">d</span>+/<span class="title">g</span>.<span class="title">valueOf</span><span class="params">()</span>   <span class="comment">// =&gt; /\d+/g</span></span></div><div class="line"><span class="function"><span class="title">new</span> <span class="title">Date</span><span class="params">(2010,0,1)</span>.<span class="title">valueOf</span><span class="params">()</span>   <span class="comment">// =&gt; 1262275200000</span></span></div></pre></td></tr></table></figure>
+<p>对比<code>toString()</code>可以看到，<code>valueOf()</code>对数组、正则、函数、普通对象都只会返回他们自己本身。Date对象返回的是从1970年1月1日开始计算的毫秒数，属于数值类型。</p>
+<h2 id="对象与运算符"><a href="#对象与运算符" class="headerlink" title="对象与运算符"></a>对象与运算符</h2><h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><p>和“==”一样， “&lt;”运算符以及其他关系运算符也会做对象到原始值的转换，但除去日期对象的特殊情况。</p>
+<p>任何对象都会首先尝试调用valueOf()，然后调用toString()。不管得到的原始值是否直接使用，它都不会进一步被转换为数字或字符串。</p>
+<p>看下面例子：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span>&#123;<span class="keyword">return</span>&#125;) &gt; <span class="number">1</span>    <span class="comment">// =&gt; false</span></div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span>&#123;<span class="keyword">return</span>&#125;) &lt; <span class="number">1</span>    <span class="comment">// =&gt; false</span></div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span></span>&#123;<span class="keyword">return</span>&#125;) = <span class="number">1</span>    <span class="comment">// =&gt; false</span></div></pre></td></tr></table></figure></p>
+<p>函数对象先是经过<code>valueOf()</code>转换得到自身，再通过<code>toString()</code>获得<code>&quot;function(x) {\n f(x);\n}&quot;</code>的定义表达式，本质是一个字符串。字符串和一个数字比较都会获得<code>false</code>布尔值，由此解释上面的结果。</p>
+<h3 id="日期对象"><a href="#日期对象" class="headerlink" title="日期对象"></a>日期对象</h3><p>在运算符前，日期对象类型的转换稍微不一样，可以观察下面例子：<br><figure class="highlight pony"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> now = <span class="function"><span class="keyword">new</span> <span class="title">Date</span>();   <span class="comment">// 创建一个日期对象</span></span></div><div class="line"><span class="function"><span class="title">typeof</span> (now + <span class="number">1</span>)    <span class="comment">// =&gt; "string"</span></span></div><div class="line"><span class="function"><span class="title">typeof</span> (now - <span class="number">1</span>)    <span class="comment">// =&gt; "number"</span></span></div><div class="line"><span class="function"><span class="title">now</span> == <span class="title">now</span>.<span class="title">toString</span>()   <span class="comment">// =&gt; true</span></span></div><div class="line"><span class="function"><span class="title">now</span> &gt; (now - <span class="number">1</span>)    <span class="comment">// =&gt; true</span></span></div></pre></td></tr></table></figure></p>
+<p>在<code>+</code>号运算加合数字的时候，日期对象使用<code>toString()</code>会变换为字符串，再将<code>1</code>变成<code>&quot;1&quot;</code>字符串，通过<code>+</code>拼合，得到的结果为<code>&quot;Sat Sep 30 2017 14:11:17 GMT+0800 (中国标准时间)1&quot;</code>。而非使用<code>valueOf()</code>变成数值，在此基础上加一。在使用日期对象进行运算的时候，应该显式转换为数值，再进行运算。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-30T07:04:12.624Z" itemprop="dateUpdated">2017-09-30 15:04:12</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/30/Javascript对象转换为原始值详解/&title=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/30/Javascript对象转换为原始值详解/&title=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&source=
+对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/30/Javascript对象转换为原始值详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&url=/2017/09/30/Javascript对象转换为原始值详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/30/Javascript对象转换为原始值详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/30/Javascript函数作用域/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript函数作用域</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/30/Javascript中小数点的处理/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript中小数点的处理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/30/Javascript对象转换为原始值详解/&title=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/30/Javascript对象转换为原始值详解/&title=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&source=
+对象到布尔值的转换非常简单，所有的对象（包括包装对象）都会转换为true。而对象到数字、对象到字符串，则涉及到两个方法：toString和valueOf..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/30/Javascript对象转换为原始值详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript对象转换为原始值详解》 — Vinson-sheep博客&url=/2017/09/30/Javascript对象转换为原始值详解/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/30/Javascript对象转换为原始值详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3aQY7jMAwEwPz/0zPAXhdOuilnAEulk5HYESsHWiL1esXj59+4+iS/vhr/3/P6xsDAwHgsYzZBMtn7+9/PlceGgYFxDiMJIpmgzYo56UPMGBgYGPGUV6Q8oWNgYGDcy8hDXL/GwMDAyEP5XmrO/yAMDIzTGG1j4C+vv9jfwMDAeAjjpxzJMnFlsTiMCgMDY2vGrNSVHL9oU2qeZIsVLgYGxkaMPM21R8fyIOr0Oiu6YWBgPJCRK9cbluup9vIpDAyMrRmzRdv7FNwm07bcdnknBgbGpow22bWJOEnNebX/8nMMDIzDGLPp2+MU7V/w4VkMDIytGe2Cr63k5fh2mYiBgXEOI0mpsyL+esOgaKliYGAcwJgdpFgpyc3Gh9NtGBgYBzDypV60mVxOo8WBDwwMjK0Zs+Da8v1dy9B6F46BgbERo92gtpvYvOaHgYGB0SbcZCmZND7van9iYGCczBgWuUatzTbcJDYMDIy9GUWbsEy+739zpfFw2RjAwMA4mLHSPGjLcO37AQMD4wRGkkDzVJs/O1sIRmwMDIztGOvl/iS95i3MpC364b2BgYGxHaOtq7eNxraF0G6P64GBgfFYRpJk263pXU3K4lsMDIwDGOub1dnxiPZtgIGBgdGW+9fT5awtgYGBgVH/RBzEensAAwPjZMZsmzrj5QcpiuUmBgbG1ox7GwP5sq8N+oYuBwYGxvMYv7Di9RsfiW0SAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

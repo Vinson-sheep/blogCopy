@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>js正则表达式的多行模式和单行模式 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,RegExp,原创">
+    <meta name="description" content="参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。">
+<meta name="keywords" content="javascript,RegExp,原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js正则表达式的多行模式和单行模式">
+<meta property="og:url" content="/2017/10/14/js正则表达式的多行模式和单行模式/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ohkgqh4gv.bkt.clouddn.com/1507965279%281%29.png">
+<meta property="og:updated_time" content="2017-10-14T08:05:42.914Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js正则表达式的多行模式和单行模式">
+<meta name="twitter:description" content="参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。">
+<meta name="twitter:image" content="http://ohkgqh4gv.bkt.clouddn.com/1507965279%281%29.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js正则表达式的多行模式和单行模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js正则表达式的多行模式和单行模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-14T07:05:42.000Z" itemprop="datePublished" class="page-time">
+  2017-10-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文本保存的方式"><span class="post-toc-number">2.</span> <span class="post-toc-text">文本保存的方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">3.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对-符号的影响"><span class="post-toc-number">4.</span> <span class="post-toc-text">对 . 符号的影响</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结论"><span class="post-toc-number">5.</span> <span class="post-toc-text">结论</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-js正则表达式的多行模式和单行模式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js正则表达式的多行模式和单行模式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-14 15:05:42" datetime="2017-10-14T07:05:42.000Z"  itemprop="datePublished">2017-10-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>其实底部的文章已经把多行模式和单行模式的关系讲述得很透彻了，但是它是针对php和Expresso，在js环境下的正则表现会有差异。多行模式在犀牛书的描述其实也是相当简洁明了的：</p>
+<blockquote>
+<p>修饰符“m”用以在多行模式中执行匹配，在这种模式下，如果检索的字符串包含多行，那么^和$锚字符除了匹配整个字符串的开始和结尾之外，还能匹配每行的开始和结尾。</p>
+</blockquote>
+<p>书上这么说，但到底是怎么一种情况呢？</p>
+<h2 id="文本保存的方式"><a href="#文本保存的方式" class="headerlink" title="文本保存的方式"></a>文本保存的方式</h2><p>首先我们来思考一个问题，当我们在win上的txt文本上敲一个回车然后保存，那文件对回车的保存是如何实现的？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ohkgqh4gv.bkt.clouddn.com/1507965279%281%29.png" alt="比如我在这输入点东西" title="">
+                </div>
+                <div class="image-caption">比如我在这输入点东西</div>
+            </figure>
+<p>知识点：<code>\r</code>为回车符，<code>\n</code>为换行符。</p>
+<p>在windows中，我们平常说的换行，实质上是先回车，后换行。</p>
+<p>所以上图的文本等价于<code>1abcde\r\n2abc\r\n3eeeee\r\n</code>。</p>
+<p>我们可以基于上面的讨论，在js中模拟多行文本。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>真实的测试是需要调用本地或者网络文件，读取里面的内容再进行多行匹配。</p>
+<p>为了便于测试，我们使用<code>1abcde\r\n2abc\r\n3eeeee\r\n</code>进行测试。</p>
+<p>下面的测试代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> pattern = <span class="regexp">/^(\d\w+)$/mg</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item = <span class="string">"1abcde\r\n2abc\r\n3eeeeee"</span>;</span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item1 = <span class="string">"1abcde\n2abc\n3eeeeee"</span>;</span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item2 = <span class="string">"1abcde\r2abc\r3eeeeee"</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item.match(pattern));</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item1.match(pattern));</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item2.match(pattern));</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>输出结果：<code>[&quot;1abcde&quot;, &quot;2abc&quot;, &quot;3eeeeee&quot;]</code></p>
+<p>分析： 如果你阅读了尾部的文章，你会发现输出结果差异非常大，后面会讨论这个问题。在这个例子中，我们分别测试了混合使用<code>\r\n</code>与单独使用<code>\r</code>和<code>\n</code>的情况，结果输出均为<code>[&quot;1abcde&quot;, &quot;2abc&quot;, &quot;3eeeeee&quot;]</code>。这表明，js多行模式下，<code>\n</code>和<code>\r</code>表现是相同的，<code>^</code>和<code>$</code>这两个锚元素都可以定位<code>\n</code>和<code>\r</code>前后。</p>
+<h2 id="对-符号的影响"><a href="#对-符号的影响" class="headerlink" title="对 . 符号的影响"></a>对 . 符号的影响</h2><p>我们将上面的代码修改一下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> pattern = <span class="regexp">/^.$/gm</span>;</span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item = <span class="string">"a"</span>;</span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item1 = <span class="string">"\n"</span>;</span></div><div class="line"><span class="actionscript">    <span class="keyword">var</span> item2 = <span class="string">"\r"</span>;</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item.match(pattern));</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item1.match(pattern));</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(item2.match(pattern));</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>输出结果：<code>[&quot;a&quot;]</code>、<code>null</code>、<code>null</code>。</p>
+<p>那是不是表明多行模式下<code>.</code>不能匹配<code>\n\r</code>呢？别急，我们将代码再改改：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var pattern</span> = /^.$/g;</div></pre></td></tr></table></figure></p>
+<p>输出结果：<code>[&quot;a&quot;]</code>、<code>null</code>、<code>null</code>。</p>
+<p>结果令人有点惊讶，单双行模式下<code>.</code>的表现是一致的。如果查看尾部文章，可以发现测试结果与尾部文章的差异甚大。</p>
+<p><em>为什么要做这个测试？因为参考文章提及到这个问题</em></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>多行模式会影响<code>^</code>和<code>$</code>的匹配，而且对<code>\n</code>和<code>\r</code>的表现是一样的。</li>
+<li>正则表达式中的<code>.</code>符号是不能够匹配<code>\n</code>和<code>\r</code>，无论是单行还是多行模式下。</li>
+<li>php和Expresso对正则的实现与js的差异非常大，要理解语言的特殊性。</li>
+</ol>
+<p>传送门：</p>
+<p><a href="http://blog.csdn.net/zm2714/article/details/7925264" target="_blank" rel="external">正则表达式的多行模式与单行模式</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-14T08:05:42.914Z" itemprop="dateUpdated">2017-10-14 16:05:42</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RegExp/">RegExp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原创/">原创</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/14/js正则表达式的多行模式和单行模式/&title=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/14/js正则表达式的多行模式和单行模式/&title=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&source=
+参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/14/js正则表达式的多行模式和单行模式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&url=/2017/10/14/js正则表达式的多行模式和单行模式/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/14/js正则表达式的多行模式和单行模式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/14/js中RegExp引用方法详解/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js中RegExp引用方法详解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/14/markdown语法复习/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">markdown语法复习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/14/js正则表达式的多行模式和单行模式/&title=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/14/js正则表达式的多行模式和单行模式/&title=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&source=
+参考了一些文章，对js正则表达式的多行模式和单行模式有了更深的了解。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/14/js正则表达式的多行模式和单行模式/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js正则表达式的多行模式和单行模式》 — Vinson-sheep博客&url=/2017/10/14/js正则表达式的多行模式和单行模式/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/14/js正则表达式的多行模式和单行模式/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQW7DMAwEwPz/0+kDAju7VFvA0vgUBIat8YEgV3q94uv9cX3+f/XP1dPu3/L6iwsDA+OxjPftlbzg8/+Een9/vjYMDIxzGPeLu3rxDJx/lPzDYWBgYNwXwbbIzoovBgYGxozxuyNu0kRiYGCczEiG2AS/Eq4lH+gXZnEMDIwHMtql/OfvP9nfwMDAeBTjXV55wU3iufyeL6vCwMDYmpEXuDZiyxeat5JfjmVgYGBsysiH1XZjIAnX2m2AyzsxMDAOYKwfhlgJ7JJNhbopxMDA2Iix3vzlhbVdelK4o10ODAyMhzOGRa1M5tt2sG4lMTAwDmDkyVxSiPPjX+1b6tMcGBgYGzGSRawE+m0M164HAwPjTEZeCvNwbf04xSUeAwNja0YbtLW8WdmdDdIYGBi7MtoHrTeRSSTXln4MDIwTGLOAPo/784W2z8HAwDiHMWvOZuz1IfZL3IaBgXEkY3a0Kw/d8oYyOjOCgYGxHWN9AyAP7NqOLo8FMTAwTmPMgrAE347BeSuJgYFxDqN90CyYazc+iw+EgYFxAKNtAfNMfta/5a0kBgbG3oz1gD5vGdunDTcGMDAwtmO0BynyEjkbYtuthVd7YWBgPJaxUmRn98+iui88DAyMAxhtNDbbmGwPdtSjLAYGBsZo6zEvu0tgDAwMjHImziO5diS+JGFgYBzASIbStuzODlska8DAwDiN0Yb19WmOctBdCQExMDC2Y/wADj5gvikgdOwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

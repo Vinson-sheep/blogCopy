@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu14mysq5.7不支持中文问题 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql">
+    <meta name="description" content="no">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu14mysq5.7不支持中文问题">
+<meta property="og:url" content="/2017/10/25/Ubuntu14mysq5-7不支持中文问题/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="no">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-25T13:27:58.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu14mysq5.7不支持中文问题">
+<meta name="twitter:description" content="no">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu14mysq5.7不支持中文问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu14mysq5.7不支持中文问题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-25T12:48:51.000Z" itemprop="datePublished" class="page-time">
+  2017-10-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-Ubuntu14mysq5-7不支持中文问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu14mysq5.7不支持中文问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-25 20:48:51" datetime="2017-10-25T12:48:51.000Z"  itemprop="datePublished">2017-10-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>不得不说，用mysql坑很多，首先就是编码问题。按照网上搜到的答案来处理，很多次我都不能restart mysql了。最后发现是版本问题，在这里我得做文章记录一下。<br><a id="more"></a></p>
+</blockquote>
+<p>mysql本身是不支持中文的，这个我在win10搭建的服务器也碰到过。想要mysql支持中文，就需要更改它的设置。</p>
+<p><em>请看完这篇文章再动手</em></p>
+<p><em>mysql5.7 Ubuntu14.05</em></p>
+<p>首先停下mysql服务：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/mysql <span class="built_in">stop</span></div></pre></td></tr></table></figure></p>
+<p>然后用gedit打开mysql配置文件<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/mysql/<span class="keyword">my</span>.cnf</div></pre></td></tr></table></figure></p>
+<p>[client]下添加：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">default</span>-character-<span class="keyword">set</span>=utf8</div></pre></td></tr></table></figure></p>
+<p>[mysqld]下添加：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">default</span>-character-<span class="keyword">set</span>=utf8</div></pre></td></tr></table></figure></p>
+<p>保存退出</p>
+<p>重启mysql服务<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo<span class="built_in"> service </span>mysql restart</div></pre></td></tr></table></figure></p>
+<p>然而…<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Job failed <span class="built_in">to</span> <span class="built_in">start</span></div></pre></td></tr></table></figure></p>
+<p>问题在哪呢？</p>
+<blockquote>
+<p>可能是版本的问题，查5.5以后的版本对字符编码方式修改的办法，发现[mysqld]修改方法变了：</p>
+</blockquote>
+<p>[mysqld]下添加的应该为：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">character-set-server</span>=utf8</div><div class="line"></div><div class="line"><span class="attr">collation-server</span>=utf8_general_ci</div></pre></td></tr></table></figure></p>
+<p>保存退出<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo<span class="built_in"> service </span>mysql restart</div></pre></td></tr></table></figure></p>
+<p>成功</p>
+<p>查看字符集<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like <span class="emphasis">'%char%'</span>;</div><div class="line"><span class="code">+--------------------------+</span>----------------------------+</div><div class="line">| Variable<span class="emphasis">_name            | Value                      |</span></div><div class="line"><span class="emphasis">+--------------------------+----------------------------+</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_client     | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_connection | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_database   | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_filesystem | binary                     |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_results    | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_server     | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_system     | utf8                       |</span></div><div class="line"><span class="emphasis">| character_</span>sets<span class="emphasis">_dir       | /usr/share/mysql/charsets/ |</span></div><div class="line"><span class="emphasis">+--------------------------+----------------------------+</span></div><div class="line"><span class="emphasis">8 rows in set (0.00 sec)</span></div></pre></td></tr></table></figure></p>
+<p>传送们：</p>
+<p><a href="https://www.2cto.com/database/201509/443147.html" target="_blank" rel="external">参考资料1——Ubuntu15下mysql5.6.25解决不支持中文的办法</a></p>
+<p><a href="https://www.2cto.com/database/201207/139548.html" target="_blank" rel="external">参考资料2——修改mysql字符编码出现Job failed to start解决办法</a></p>
+<p><a href="http://www.linuxidc.com/Linux/2009-05/20163.htm" target="_blank" rel="external">参考资料3——Ubuntu MySQL插入中文出错</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-25T13:27:58.982Z" itemprop="dateUpdated">2017-10-25 21:27:58</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&title=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&title=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&source=
+不得不说，用mysql坑很多，首先就是编码问题。按照网上搜到的答案来处理，很多次我都不能restart mysql了。最后发现是版本问题，在这里我得做文..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/25/Ubuntu14-05彻底卸载mysql/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Ubuntu14.05彻底卸载mysql</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/22/CSS3中user-select的使用/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS3中user-select的使用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&title=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&title=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&source=
+不得不说，用mysql坑很多，首先就是编码问题。按照网上搜到的答案来处理，很多次我都不能restart mysql了。最后发现是版本问题，在这里我得做文..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu14mysq5.7不支持中文问题》 — Vinson-sheep博客&url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/25/Ubuntu14mysq5-7不支持中文问题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aS27DMAwFwNz/0u6miwKJ3UfSLWBptCrcxNZ4wYif1ytex9t6/2/1Dj+/dX3/2xYGBsZjGcflOtvo9Vaur+SvKdkbBgbGPoyzW08+Uw2yVTYGBgbG2e2qB8Tro9711jEwMDCqjGpYvN7udZjGwMDA6CWxOSzfeu8pGBgYuzHyqvv///0n/Q0MDIxHMY7iyhPaPOzm4fV0VxgYGEsz5i3MJEBXj4DJK/jwFAwMjEUZeaDsFcWqiWs+qPHhdwMDA2NpxmSoIhnzyrdbHdeIuqAYGBgPZ+TBsVfK7w1e3ADAwMBYmpEkrvkg17xV2WxkYmBgLMTIE8skjFaHNqov5Yb8GAMDYyFGNaHNH9wr8DUDLgYGxhKMXoGsd3CsXs+PjBgYGDsw8tGK3pGx14SohnIMDIx9GBPAvJ1ZHcXAwMDYh5G0HquDqnl5LgdHKTEGBsaijHl7oHesrA5V/MLDwMBYmlH40OAIWL2StCswMDD2YcxHIqpJb3XTUQKMgYGxJaOafPZKeHeFcgwMjD0Zva3Mi2vNpiYGBsbSjCRFnITIXnFttDAwMBZiHMVVHSnLk9VeeP2+goGBsTRjEtOqN6omwElAvyE0Y2BgPISRl+/zg2OSuOZDHoWZEQwMjKUZ+RhW7/G9o2eeZmNgYGDkATQP3JOxjFd1Wg0DA2MzxjwdTYpo5eIaBgbGBoxqoOx1EqujY3nhDwMDY21GL3WcjGLME+BRCxMDA+NJjC/vmOFnA5ubMgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

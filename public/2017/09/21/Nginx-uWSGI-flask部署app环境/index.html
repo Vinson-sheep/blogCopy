@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Nginx+uWSGI+flask部署app环境 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Nginx,uWSGI,flask,mysql">
+    <meta name="description" content="利用一套技术栈实现强有力的后台部署">
+<meta name="keywords" content="Nginx,uWSGI,flask,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx+uWSGI+flask部署app环境">
+<meta property="og:url" content="/2017/09/21/Nginx-uWSGI-flask部署app环境/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="利用一套技术栈实现强有力的后台部署">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-22T14:07:02.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx+uWSGI+flask部署app环境">
+<meta name="twitter:description" content="利用一套技术栈实现强有力的后台部署">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Nginx+uWSGI+flask部署app环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Nginx+uWSGI+flask部署app环境</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-21T15:09:24.000Z" itemprop="datePublished" class="page-time">
+  2017-09-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/服务器部署/">服务器部署</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装mysql"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装mysql</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#python3安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">python3安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装git"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装git</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置代码运行的环境"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置代码运行的环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#uWSGI配置"><span class="post-toc-number">5.</span> <span class="post-toc-text">uWSGI配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Flask"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装Flask</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#supervisor配置"><span class="post-toc-number">7.</span> <span class="post-toc-text">supervisor配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Nginx"><span class="post-toc-number">8.</span> <span class="post-toc-text">安装Nginx</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Nginx-uWSGI-flask部署app环境"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Nginx+uWSGI+flask部署app环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-21 23:09:24" datetime="2017-09-21T15:09:24.000Z"  itemprop="datePublished">2017-09-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/服务器部署/">服务器部署</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>想有一个响应速度快、后台稳定的服务器环境，仅靠框架（比如flask）自带服务器系统是不足够的。利用Nginx和uWSGI,实现强有力的服务器环境，可以让页面相应速度上升几十倍。<br><a id="more"></a></p>
+<blockquote>
+<p>以前用过纯JS写过一个博客，但是毕竟自己研究前端比较多，对于后台配置不太熟悉。当时使用了flask做后台框架，由于flask自带服务器系统，所以平时就开flask服务器就算了。后来发现，flask自带的服务器非常不稳。由于社团项目需要，通过同学的推荐，我决定使用这么一套技术栈搭建后台。<br>Ubuntu 14.04.05 + mysql + uWSGI + python3 + git</p>
+</blockquote>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><ol>
+<li><p>终端安装mysql</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install mysql-server</div><div class="line">sudo apt-<span class="builtin-name">get</span> install mysql-client</div><div class="line">sudo apt-<span class="builtin-name">get</span> install libmysqlclient-dev</div><div class="line"><span class="comment"># 用下面语句检查是否安装成功</span></div><div class="line">sudo netstat -tap | grep mysql</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装mysql时会有一个用户名<code>debian-sys-maint</code>和一个随机密码。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo <span class="keyword">vi</span> /etc/mysql/debian.<span class="keyword">cnf</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>找到帐号密码然后登录mysql命令行</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">mysql -u debian-sys-maint -p</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>进入控制台后，修改密码</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">use mysql;</div><div class="line">update<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">password</span>=PASSWORD('新密码') where <span class="attribute">user</span>=<span class="string">'root'</span>; FLUSH PRIVILEGES;</div></pre></td></tr></table></figure>
+</li>
+<li><p>输入<code>quit</code>退出控制台。</p>
+</li>
+</ol>
+<h2 id="python3安装"><a href="#python3安装" class="headerlink" title="python3安装"></a>python3安装</h2><ol>
+<li><p>终端安装python3</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install python3</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装pip3</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install python3-pip</div></pre></td></tr></table></figure>
+</li>
+<li><p>顺便安装pip</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install python-pip</div></pre></td></tr></table></figure>
+</li>
+<li><p>再把mysql的python驱动装了吧</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip3 <span class="keyword">install</span> mysqlclient</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install git</div></pre></td></tr></table></figure>
+<h2 id="配置代码运行的环境"><a href="#配置代码运行的环境" class="headerlink" title="配置代码运行的环境"></a>配置代码运行的环境</h2><p>Python的虚拟环境，可以隔离各个项目，避免python版本冲突<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip3 <span class="keyword">install</span> virtualenv</div></pre></td></tr></table></figure></p>
+<p>假设我的项目目录是<code>/home/jnugeek</code>，进入根目录，执行<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">virtualenv <span class="keyword">jnugeek</span></div><div class="line"><span class="keyword">source </span><span class="keyword">jnugeek/bin/activate </span><span class="comment">#进入虚拟环境</span></div></pre></td></tr></table></figure></p>
+<p>这样就创建了名为<code>jnugeek</code>的虚拟环境，<br>直接在后台输入<code>deactivate</code>退出虚拟环境</p>
+<h2 id="uWSGI配置"><a href="#uWSGI配置" class="headerlink" title="uWSGI配置"></a>uWSGI配置</h2><p>uWSGI是高性能http服务器，用来和Python程序交换<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">jnugeek)jnugeek </span>root$ pip3 <span class="keyword">install </span>uwsgi</div></pre></td></tr></table></figure></p>
+<p>在虚拟环境下不需要使用<code>sudo</code>，因为virtualenv 是没有权限要求的。<br>在项目目录下创建<code>config.ini</code>作为uWSGI的配置文件<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="section">[uwsgi]</span></div><div class="line"><span class="attr">master</span> = <span class="literal">true</span></div><div class="line"><span class="attr">home</span> = jnugeek #虚拟环境文件夹</div><div class="line"><span class="attr">wsgi-file</span> = manage.py</div><div class="line"><span class="attr">callable</span> = app</div><div class="line"><span class="attr">socket</span> = :<span class="number">5000</span></div><div class="line"><span class="attr">processes</span> = <span class="number">4</span></div><div class="line"><span class="attr">threads</span> = <span class="number">2</span></div><div class="line"><span class="attr">buffer-size</span> = <span class="number">32768</span></div></pre></td></tr></table></figure></p>
+<p>(虚拟环境内)运行文件<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uwsgi <span class="built_in">config</span>.ini</div></pre></td></tr></table></figure></p>
+<p>如果没有报错的话就是可以的，但是会有一些比较坑爹的错误<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!!! <span class="literal">no</span> internal<span class="built_in"> routing </span>support, rebuild with pcre support !!!</div></pre></td></tr></table></figure></p>
+<p>这个是因为pcre没弄好，一般去掉缓存重装就可以了，-I的作用是重装<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pip3</span> install uwsgi -I --<span class="literal">no</span>-cache-dir</div></pre></td></tr></table></figure></p>
+<h2 id="安装Flask"><a href="#安装Flask" class="headerlink" title="安装Flask"></a>安装Flask</h2><p>在根目录下新建一个requirements.txt文件，输入<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="attr">Flask</span>==<span class="number">0.10</span>.<span class="number">1</span></div><div class="line"><span class="attr">Flask-Login</span>==<span class="number">0.2</span>.<span class="number">11</span></div><div class="line"><span class="attr">Flask-Mail</span>==<span class="number">0.9</span>.<span class="number">1</span></div><div class="line"><span class="attr">Flask-Moment</span>==<span class="number">0.4</span>.<span class="number">0</span></div><div class="line"><span class="attr">Flask-PageDown</span>==<span class="number">0.1</span>.<span class="number">5</span></div><div class="line"><span class="attr">Flask-SQLAlchemy</span>==<span class="number">2.0</span></div><div class="line"><span class="attr">Flask-Script</span>==<span class="number">2.0</span>.<span class="number">5</span></div><div class="line"><span class="attr">Flask-WTF</span>==<span class="number">0.10</span>.<span class="number">2</span></div><div class="line"><span class="attr">Flask-Cache</span>==<span class="number">0.13</span>.<span class="number">1</span></div><div class="line"><span class="attr">Flask-Restless</span>==<span class="number">0.15</span>.<span class="number">0</span></div><div class="line"><span class="attr">Flask-Uploads</span>==<span class="number">0.1</span>.<span class="number">3</span></div><div class="line"><span class="attr">Jinja2</span>==<span class="number">2.7</span>.<span class="number">3</span></div><div class="line"><span class="attr">Mako</span>==<span class="number">1.0</span>.<span class="number">0</span></div><div class="line"><span class="attr">Markdown</span>==<span class="number">2.5</span>.<span class="number">1</span></div><div class="line"><span class="attr">MarkupSafe</span>==<span class="number">0.23</span></div><div class="line"><span class="attr">SQLAlchemy</span>==<span class="number">0.9</span>.<span class="number">8</span></div><div class="line"><span class="attr">WTForms</span>==<span class="number">2.0</span>.<span class="number">1</span></div><div class="line"><span class="attr">Werkzeug</span>==<span class="number">0.9</span>.<span class="number">6</span></div><div class="line"><span class="attr">html5lib</span>==<span class="number">1.0</span>b3</div><div class="line"><span class="attr">itsdangerous</span>==<span class="number">0.24</span></div><div class="line"><span class="attr">six</span>==<span class="number">1.8</span>.<span class="number">0</span></div><div class="line"><span class="attr">awesome-slugify</span>==<span class="number">1.6</span></div></pre></td></tr></table></figure></p>
+<p>安装清单文件<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">jnugeek)jnugeek </span>root$ pip3 <span class="keyword">install </span>-r requirements.txt</div></pre></td></tr></table></figure></p>
+<h2 id="supervisor配置"><a href="#supervisor配置" class="headerlink" title="supervisor配置"></a>supervisor配置</h2><p>uWSGI好是好，但是要是它万一断了，或者出问题了怎么办？要是有这样的一个程序可以自动监控运行uWSGI那岂不是美滋滋，而supervisor就是这样的程序。<br>安装<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install supervisor</div></pre></td></tr></table></figure></p>
+<p>在/etc/supervisor/conf.d/下建立一个配置文件sp.conf<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="section">[program:my_flask]</span></div><div class="line"><span class="comment"># 启动命令入口</span></div><div class="line"><span class="attr">command</span>=/home/jnugeek/jnugeek/bin/uwsgi /home/jnugeek/config.ini</div><div class="line"><span class="comment"># 命令程序所在目录</span></div><div class="line"><span class="attr">directory</span>=/home/jnugeek</div><div class="line"><span class="comment">#运行命令的用户名</span></div><div class="line"><span class="attr">user</span>=root</div><div class="line"><span class="attr">autostart</span>=<span class="literal">true</span></div><div class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></div><div class="line"><span class="comment">#日志地址（需要手动新建文件）</span></div><div class="line"><span class="attr">stdout_logfile</span>=/home/jnugeek/logs/uwsgi_supervisor.log</div></pre></td></tr></table></figure></p>
+<p>启动/重启/查看状态命令<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo<span class="built_in"> service </span>supervisor start/restart/stats</div></pre></td></tr></table></figure></p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="builtin-name">get</span> install nginx</div></pre></td></tr></table></figure>
+<p>新建一个default文件（无后缀）<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">  <span class="attribute">server_name</span> X.X.X.X; <span class="comment">#公网地址</span></div><div class="line">  <span class="attribute">location</span> / &#123;</div><div class="line">  <span class="attribute">include</span> uwsgi_params;</div><div class="line">  <span class="attribute">uwsgi_pass</span> <span class="number">127.0.0.1:5000</span>; <span class="comment"># 指向uwsgi 所应用的内部地址,所有请求将转发给uwsgi 处理</span></div><div class="line">  <span class="attribute">uwsgi_param</span> UWSGI_PYHOME /home/jnugeek/jnugeek; <span class="comment"># 指向虚拟环境目录</span></div><div class="line">  <span class="attribute">uwsgi_param</span> UWSGI_CHDIR /home/jnugeek; <span class="comment"># 指向网站根目录</span></div><div class="line">  <span class="attribute">uwsgi_param</span> UWSGI_SCRIPT manage:app; <span class="comment"># 指定启动程序</span></div><div class="line">  <span class="attribute">uwsgi_read_timeout</span> <span class="number">100</span>;</div><div class="line"> &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试一下配置是否正确<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">sudo nginx -t</span></div></pre></td></tr></table></figure></p>
+<p>将/etc/nginx/sites-available/default替换掉<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo<span class="built_in"> service </span>nginx restart</div></pre></td></tr></table></figure></p>
+<p>将你的项目文件装载后，在浏览器中输入你的IP地址，就可以看到你的项目了。</p>
+<p>在哪里查看错误日志呢？</p>
+<blockquote>
+<p>/var/log/nginx/error.log</p>
+</blockquote>
+<p><a href="http://www.jianshu.com/p/84978157c785" target="_blank" rel="external">参考资料1——简书</a><br><a href="http://www.cnblogs.com/Ray-liang/p/4173923.html" target="_blank" rel="external">参考资料2——博客园</a><br><a href="https://blog.patrickcty.cc/2017/03/02/%E5%86%8D%E6%AC%A1%E9%83%A8%E7%BD%B2Flask-app/" target="_blank" rel="external">参考资料3——同学的博客</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-22T14:07:02.035Z" itemprop="dateUpdated">2017-09-22 22:07:02</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask/">flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uWSGI/">uWSGI</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&title=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&title=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&source=想有一个响应速度快、后台稳定的服务器环境，仅靠框架（比如flask）自带服务器系统是不足够的。利用Nginx和uWSGI,实现强有力的服务器环境，可以让页..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/Nginx-uWSGI-flask部署app环境/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/21/Ubuntu初体验（一）——配置桌面环境/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Ubuntu初体验（一）——配置桌面环境</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/21/pymysql连接mysql数据库——不支持中文解决/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">pymysql连接mysql数据库——不支持中文解决</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&title=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&title=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&source=想有一个响应速度快、后台稳定的服务器环境，仅靠框架（比如flask）自带服务器系统是不足够的。利用Nginx和uWSGI,实现强有力的服务器环境，可以让页..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/09/21/Nginx-uWSGI-flask部署app环境/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Nginx+uWSGI+flask部署app环境》 — Vinson-sheep博客&url=/2017/09/21/Nginx-uWSGI-flask部署app环境/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/09/21/Nginx-uWSGI-flask部署app环境/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aSXLCQAwFUO5/aXKAxOZL3aTKreeVi3jgsVA0vV7x8f515Nfcn99/svnAwMB4LON9e9xfk/915fz++RgYGHMYVxEsCZT565M35ldiYGBgJAExCYtJOpi8FwMDA6PHSMrO+5QOAwMDI2dUk7lqqZk32r5ei2NgYDyQkXfd///8K/MNDAyMRzHexSNJKHvp49K3wsDAOJqRB7g81ev9ENWAi4GBMYexMoZMhgR5IE7uuuRhYGAMYKw8Lk/7eg24CIyBgXE0Y2UJrDewXFkCi74DBgbGAEbvxXmYzkNz9efGwMA4lZEvN1QXJpISN1+w+IDEwMAYw8iXwJIiM4/0K59cTmIxMDAOYqwvPfRa/9UEsXovBgbGSYzewDJJ6XpNvaXUEAMDYySj14ZLSt/1RPCPSSwGBsahjF6orc4cqg24wjQDAwNjAGNXE603ZuiljJddQwwMjKMZyaPXBwa9wWcU+jEwMI5m9FK3Xrs/KkSLpTUGBgZGPvOsji0LTf98FIqBgTGYUR1qJgli3m7LQzMGBsYcRi+x6yVz1eD+IQHFwMA4lNErUKvnSULZC+IYGBgTGPmxC9Zrt/X+SWBgYJzEqAbZ6lpGr+mfszEwMOYwqoGvGoJzXjX0Y2BgYOSkPB3srW4Uli0wMDAwqklbsGBRDcfbAi4GBsajGOuLXMldecmaDw8wMDAmMPLScVcmVm3qbRtkYmBgPI/xA3Y6YL6/zk65AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

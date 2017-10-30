@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JS实现无限分页加载——原理图解(转) | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,前端组件开发,转载">
+    <meta name="description" content="由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分页的形式，但是分页的效果并不好，需要用户手动点击下一页，才能看到更多的内容。有很多网站使用 无限分页 的模式，即网页视窗到达内容底部就自动加载下一部分的内容…本篇就无限分页的实现模型，讲述其中奥妙。">
+<meta name="keywords" content="javascript,前端组件开发,转载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS实现无限分页加载——原理图解(转)">
+<meta property="og:url" content="/2017/10/13/JS实现无限分页加载——原理图解-转/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分页的形式，但是分页的效果并不好，需要用户手动点击下一页，才能看到更多的内容。有很多网站使用 无限分页 的模式，即网页视窗到达内容底部就自动加载下一部分的内容…本篇就无限分页的实现模型，讲述其中奥妙。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ohkgqh4gv.bkt.clouddn.com/12.png">
+<meta property="og:image" content="http://www.cnblogs.com/xing901022/p/5052780.html">
+<meta property="og:updated_time" content="2017-10-13T16:12:00.653Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS实现无限分页加载——原理图解(转)">
+<meta name="twitter:description" content="由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分页的形式，但是分页的效果并不好，需要用户手动点击下一页，才能看到更多的内容。有很多网站使用 无限分页 的模式，即网页视窗到达内容底部就自动加载下一部分的内容…本篇就无限分页的实现模型，讲述其中奥妙。">
+<meta name="twitter:image" content="http://ohkgqh4gv.bkt.clouddn.com/12.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS实现无限分页加载——原理图解(转)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS实现无限分页加载——原理图解(转)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-13T03:45:54.000Z" itemprop="datePublished" class="page-time">
+  2017-10-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理图"><span class="post-toc-number">1.</span> <span class="post-toc-text">原理图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现的思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现的思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码样例"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码样例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#个人总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">个人总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JS实现无限分页加载——原理图解-转"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS实现无限分页加载——原理图解(转)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-13 11:45:54" datetime="2017-10-13T03:45:54.000Z"  itemprop="datePublished">2017-10-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分页的形式，但是分页的效果并不好，需要用户手动点击下一页，才能看到更多的内容。有很多网站使用 无限分页 的模式，即网页视窗到达内容底部就自动加载下一部分的内容…<br>本篇就无限分页的实现模型，讲述其中奥妙。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h2><p>实现无限分页的过程大致如下：</p>
+<ol>
+<li><p>视窗滚动到底部</p>
+</li>
+<li><p>触发加载，添加到现有内容的后面。</p>
+</li>
+</ol>
+<p>因此，可能会出现两种情况：</p>
+<ol>
+<li><p>当页面的内容很少，没有出现滚动条。</p>
+</li>
+<li><p>当页面的内容很多，出现了滚动条。</p>
+</li>
+</ol>
+<p>针对这两种情况，需要理解几个概念：</p>
+<p>scrollHeight即真实内容的高度；</p>
+<p>clientHeight比较好理解，是视窗的高度，就是我们在浏览器中所能看到内容的高度；</p>
+<p>scrollTop是视窗上面隐藏掉的部分</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ohkgqh4gv.bkt.clouddn.com/12.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="实现的思路"><a href="#实现的思路" class="headerlink" title="实现的思路"></a>实现的思路</h2><p><strong>1. 如果真实的内容比视窗高度小，则一直加载到超过视窗</strong><br><strong>2. 如果超过了视窗，则判断下面隐藏的部分的距离是否小于一定的值，如果是，则触发加载。（即滚动到了底部）</strong></p>
+<h2 id="代码样例"><a href="#代码样例" class="headerlink" title="代码样例"></a>代码样例</h2><p>代码部分没有太多的内容，需要注意的是：<br><strong>1. 使用fixed定位加载框</strong><br><strong>2. 使用setTimeout定时触发判断方法，频率可以自定义</strong><br><strong>3. 通过 真实内容高度 - 视窗高度 - 上面隐藏的高度 &lt; 20，作为加载的触发条件</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>无限翻页测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">    <span class="selector-id">#spinner</span>&#123;</span></div><div class="line"><span class="undefined">        position: fixed;</span></div><div class="line"><span class="undefined">        top: 20px;</span></div><div class="line"><span class="undefined">        left: 40%;</span></div><div class="line"><span class="undefined">        display: block;</span></div><div class="line"><span class="undefined">        color: red;</span></div><div class="line"><span class="undefined">        font-weight: 900;</span></div><div class="line"><span class="css">        <span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(80, 80, 90, 0<span class="selector-class">.22</span>);</span></div><div class="line"><span class="undefined">        padding-top: 20px;</span></div><div class="line"><span class="undefined">        padding-bottom: 20px;</span></div><div class="line"><span class="undefined">        padding-left: 100px;</span></div><div class="line"><span class="undefined">        padding-right: 100px;</span></div><div class="line"><span class="undefined">        border-radius: 15px;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"sample"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"spinner"</span>&gt;</span></div><div class="line">        正在加载</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="actionscript">        <span class="keyword">var</span> index = <span class="number">0</span>;</span></div><div class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">lowEnough</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="javascript">            <span class="keyword">var</span> pageHeight = <span class="built_in">Math</span>.max(<span class="built_in">document</span>.body.scrollHeight,<span class="built_in">document</span>.body.offsetHeight);</span></div><div class="line"><span class="javascript">            <span class="keyword">var</span> viewportHeight = <span class="built_in">window</span>.innerHeight ||</span></div><div class="line"><span class="javascript">                <span class="built_in">document</span>.documentElement.clientHeight ||</span></div><div class="line"><span class="javascript">                <span class="built_in">document</span>.body.clientHeight || <span class="number">0</span>;</span></div><div class="line"><span class="javascript">            <span class="keyword">var</span> scrollHeight = <span class="built_in">window</span>.pageYOffset ||</span></div><div class="line"><span class="javascript">                <span class="built_in">document</span>.documentElement.scrollTop ||</span></div><div class="line"><span class="javascript">                <span class="built_in">document</span>.body.scrollTop || <span class="number">0</span>;</span></div><div class="line"><span class="actionscript">            <span class="comment">// console.log(pageHeight);</span></span></div><div class="line"><span class="actionscript">            <span class="comment">// console.log(viewportHeight);</span></span></div><div class="line"><span class="actionscript">            <span class="comment">// console.log(scrollHeight);</span></span></div><div class="line"><span class="actionscript">            <span class="keyword">return</span> pageHeight - viewportHeight - scrollHeight &lt; <span class="number">20</span>;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">            <span class="keyword">var</span> htmlStr = <span class="string">""</span>;</span></div><div class="line"><span class="actionscript">            <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span></div><div class="line"><span class="actionscript">                htmlStr += <span class="string">"这是第"</span>+index+<span class="string">"次加载&lt;br&gt;"</span>;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="javascript">            $(<span class="string">'#sample'</span>).append(htmlStr);</span></div><div class="line"><span class="undefined">            index++;</span></div><div class="line"><span class="actionscript">            pollScroll();<span class="comment">//继续循环</span></span></div><div class="line"><span class="javascript">            $(<span class="string">'#spinner'</span>).hide();</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">checkScroll</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="actionscript">            <span class="keyword">if</span>(!lowEnough()) <span class="keyword">return</span> pollScroll();</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">            $(<span class="string">'#spinner'</span>).show();</span></div><div class="line"><span class="undefined">            setTimeout(doSomething,900);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">pollScroll</span><span class="params">()</span></span>&#123;</span></div><div class="line"><span class="undefined">            setTimeout(checkScroll,1000);</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">        checkScroll();</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h2><ol>
+<li>触发加载的条件始终是：真实内容高度 - 视窗高度 - 上面隐藏的高度 &lt; 20，只要把握好scrollHeight、scrollTop等属性就可以手动从写代码。</li>
+<li>index加载内容变化的关键，如果需要让服务器返回数据，诸如评论内容等，将index提交给服务器，作为一组数据的索引。如果所有内容加载完毕，则将index设置为特定值，这样使用js就能够不再触发加载。</li>
+<li>例子中使用了setTimeout,个人觉得使用setInterval会更好懂一些。但是它使用setTimeout也是很精妙，通过函数对这setTimeout互相调用，达到setInterval相同的效果。</li>
+<li>本文精华所在是pageHeight、viewportHeight、scrollHeight的定义，尽管我觉得它命名上很不符合语义，但是代码还是相当严密。</li>
+<li><code>document.documentElement.scrollTop</code>在chrome是永远返回<code>0</code>的。</li>
+</ol>
+<p>传送门：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.cnblogs.com/xing901022/p/5052780.html" alt="JS实现无限分页加载——原理图解" title="">
+                </div>
+                <div class="image-caption">JS实现无限分页加载——原理图解</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-13T16:12:00.653Z" itemprop="dateUpdated">2017-10-14 00:12:00</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端组件开发/">前端组件开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/13/JS实现无限分页加载——原理图解-转/&title=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/13/JS实现无限分页加载——原理图解-转/&title=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&source=
+由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/13/JS实现无限分页加载——原理图解-转/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&url=/2017/10/13/JS实现无限分页加载——原理图解-转/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/13/JS实现无限分页加载——原理图解-转/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/13/ES3和ES5中RegExp实例创建差异/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES3和ES5中RegExp实例创建差异</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/12/Javascript浏览器中的各种xxxHeight属性详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript浏览器中的各种xxxHeight属性详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/13/JS实现无限分页加载——原理图解-转/&title=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/13/JS实现无限分页加载——原理图解-转/&title=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&source=
+由于网页的执行都是单线程的，在JS执行的过程中，页面会呈现阻塞状态。因此，如果JS处理的数据量过大，过程复杂，可能会造成页面的卡顿。传统的数据展现都以分..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/13/JS实现无限分页加载——原理图解-转/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS实现无限分页加载——原理图解(转)》 — Vinson-sheep博客&url=/2017/10/13/JS实现无限分页加载——原理图解-转/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/13/JS实现无限分页加载——原理图解-转/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQY7CMAwFUO5/aeYAqOE7LiPVeV0hTUjzWHgc269X/LyD53Pleof8r7c9GBgYj2X0D7fe83Plep+r936hYmBgHMC4OkqydXLQ9f7Je798FwMDAyNmJN9avx0DAwPjLsb66MmVNd8NAwMDI7/Edg6xLrGtkTffxTEwMB7IyKvu///5J/0NDAyMRzHexSdJKPMfIg+sX06FgYExmlEt4ifJWXVNp6mAgYFxJmOvfFYt63d+GgwMjDMZeSux2oZcr++nhtEEBwYGxmjGXQ3OPMjm7FY/FgMD41GMasKXHLE/BFZOPTEwMEYzkpCaX3H7IXWdVraSQgwMjMcy9oJdksB1hic2O7EYGBgHMH4xBNbZudUMwMDAGMSovqYTlJMkEgMDA+Mq4K6TuairUByJ6DRELwttGBgYQxl7zcW8ZJbXxJKhisJ/DAwMjHGMJOAWBrOCpDMP3IXQj4GBMZRRvXDuHXcvNuaBGwMDYzajf2WtXl/7V9nLU2FgYBzD+HV6V+1UFJoEGBgYBzD2Lq55gWwPU04NMTAwRjOq6VqV10kio5UYGBhDGe/i0x+56A+WFbqvGBgYIxjVBuS9YTQv5O21HzAwMCYxqiNZ1VJ+dYzshpkRDAyMoYw88OXl/nxNtTlR6G9gYGAcyeiPaKyPvtn4xMDAwIibl52wm7cEbg64GBgYD2FUC2p7YxNVfKHBgIGBMZqRXx3z1K1aSusU/jAwMEYz/gCBhKh2h+6uTgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

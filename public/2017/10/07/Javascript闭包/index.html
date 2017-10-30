@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Javascript闭包 | Vinson-sheep博客 | 纯粹想赚点小钱钱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,js闭包">
+    <meta name="description" content="函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。">
+<meta name="keywords" content="javascript,js闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript闭包">
+<meta property="og:url" content="/2017/10/07/Javascript闭包/index.html">
+<meta property="og:site_name" content="Vinson-sheep博客">
+<meta property="og:description" content="函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-07T09:00:16.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript闭包">
+<meta name="twitter:description" content="函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Vinson-sheep博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Vinson-sheep</h5>
+          <a href="mailto:775014077@qq.com" title="775014077@qq.com" class="mail">775014077@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/gallery"  >
+                <i class="icon icon-lg icon-paint-brush"></i>
+                画廊
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/短篇小说/"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                小说
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Vinson-sheep/" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://new.jnugeek.cn/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                网研会
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-address-book"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Javascript闭包</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Javascript闭包</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-07T05:32:02.000Z" itemprop="datePublished" class="page-time">
+  2017-10-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域链规则"><span class="post-toc-number">1.</span> <span class="post-toc-text">作用域链规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#私有变量"><span class="post-toc-number">2.</span> <span class="post-toc-text">私有变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#循环陷阱"><span class="post-toc-number">3.</span> <span class="post-toc-text">循环陷阱</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意"><span class="post-toc-number">4.</span> <span class="post-toc-text">注意</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#this是Javascript的关键字，不是变量"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">this是Javascript的关键字，不是变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#arguments并不是关键字"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">arguments并不是关键字</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Javascript闭包"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Javascript闭包</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-07 13:32:02" datetime="2017-10-07T05:32:02.000Z"  itemprop="datePublished">2017-10-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。<br><a id="more"></a></p>
+</blockquote>
+<p>“闭包”，这个术语非常古来，是指函数变量可以被隐藏于作用域链之内，因此看起来是函数将变量“包裹”了起来。</p>
+<p><em>犀牛书p182~188</em></p>
+<h2 id="作用域链规则"><a href="#作用域链规则" class="headerlink" title="作用域链规则"></a>作用域链规则</h2><p>来看下这段代码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope = <span class="string">"global"</span>; <span class="comment">// 全局变量</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> scope = <span class="string">"local scope"</span>;  <span class="comment">// 局部变量</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> scope; &#125;  <span class="comment">//在作用域中返回这个值</span></div><div class="line">    <span class="keyword">return</span> f();</div><div class="line">&#125;</div><div class="line">checkscope();       <span class="comment">// =&gt; "local scope"</span></div></pre></td></tr></table></figure></p>
+<p>上面得出<code>local scope</code>应该毫无悬念。</p>
+<p>现在我们对这段代码做小改动。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>; <span class="comment">// 全局变量</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> scope = <span class="string">"local scope"</span>;  <span class="comment">// 局部变量</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> scope; &#125;</div><div class="line">    <span class="keyword">return</span> f;</div><div class="line">&#125;</div><div class="line">checkscope()()  <span class="comment">// 返回值是什么？</span></div></pre></td></tr></table></figure></p>
+<p><code>checkscope</code>函数会返回一个内嵌函数，而执行这个引用了局部变量的内嵌函数，返回的是什么呢？不管在何时何地执行函数f()，f()和checkscope()函数的绑定依然有效。因此最后一行代码会返回<code>local scope</code>，而不是<code>global scope</code>。简而言之，闭包的这个特效强大得让人大吃一惊：它们可以捕捉到局部变量（和参数），并一直保存下来，看来像这里变量绑定到了在其中定义它们的外部函数。</p>
+<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>像counter一样的私有变量不是只能用在一个单独的闭包内，在同一个内部函数内定义的多个嵌套函数也可以访问它，这多个嵌套函数都共享一个作用域链，看一下这段代码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> n = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        count: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> n++;&#125;,</div><div class="line">        reset: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;n=<span class="number">0</span>;&#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c = counter(), d = counter(); <span class="comment">// 创建两个计数器</span></div><div class="line">c.count()   <span class="comment">// =&gt; 0</span></div><div class="line">d.count()   <span class="comment">// =&gt; 0 : 它们互不干扰</span></div><div class="line">c.reset()   <span class="comment">// reset()和count()方法共享状态</span></div><div class="line">c.count()   <span class="comment">// =&gt; 0</span></div><div class="line">d.count()   <span class="comment">// =&gt; 1: 而没有重置d</span></div></pre></td></tr></table></figure></p>
+<h2 id="循环陷阱"><a href="#循环陷阱" class="headerlink" title="循环陷阱"></a>循环陷阱</h2><p>先看下面代码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这个函数返回一个总是返回v的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">constfunc</span><span class="params">(v)</span> </span>&#123;<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> v;&#125;;&#125;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个数组用来储存常数函数</span></div><div class="line"><span class="keyword">var</span> funcs = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) funcs[i] = constfunc(i);</div><div class="line"></div><div class="line"><span class="comment">// 在第5个位置的元素所表示的函数返回值为5</span></div><div class="line">funcs[<span class="number">5</span>]()  <span class="comment">// =&gt; 5</span></div></pre></td></tr></table></figure></p>
+<p>这段代码利用循环创建了很多个闭包，当写类似这种代码的时候往往会犯一个错误：啊就是试图将循环代码移入定义这个闭包的函数之内，看一下这段代码：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回一个函数组成的数组，它们的返回值是0~9</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">constfuncs</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> funcs = [];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</div><div class="line">        funcs[i] = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> i; &#125;;</div><div class="line">    <span class="keyword">return</span> funcs;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> funcs = constfuncs();</div><div class="line">func[<span class="number">5</span>]() <span class="comment">// 返回值是什么？</span></div></pre></td></tr></table></figure></p>
+<p>上面这段代码创建了10个闭包，并将它们存储到一个数组中。这些闭包都是在同一个函数调用中定义的，因此它们可以共享变量i。当<code>constfuncs()</code>返回时，变量i的值是10，所有的闭包都共享这一个值，因此，数组中的函数的返回值都是同一个值，这不是我们想要的结果。<strong>关联到闭包的作用域链都是“活动的”。</strong></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><h3 id="this是Javascript的关键字，不是变量"><a href="#this是Javascript的关键字，不是变量" class="headerlink" title="this是Javascript的关键字，不是变量"></a>this是Javascript的关键字，不是变量</h3><p>每个函数调用都包含一个this值，如果闭包在外部函数里是无法访问this的，除非外部函数将this转存为一个变量：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;  <span class="comment">// 将this保存至一个变量中，以便嵌套的函数能够访问它</span></div></pre></td></tr></table></figure></p>
+<h3 id="arguments并不是关键字"><a href="#arguments并不是关键字" class="headerlink" title="arguments并不是关键字"></a>arguments并不是关键字</h3><p><code>arguments</code>并不是一个关键字，但在调用每个函数时都会自动声明它，由于闭包具有自己所绑定的<code>arguments</code>，因此闭包无法直接访问外部函数的参数数组，除非外部函数将参数数组保存到另一个变量中：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> outerArguments = argumens;  <span class="comment">// 保存起来以便嵌套的函数能够使用它</span></div></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-07T09:00:16.385Z" itemprop="dateUpdated">2017-10-07 17:00:16</time>
+</span><br>
+
+
+        
+        如果文章写得好，就打赏支持一下吧
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="Vinson-sheep">
+            Vinson-sheep
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js闭包/">js闭包</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/07/Javascript闭包/&title=《Javascript闭包》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/07/Javascript闭包/&title=《Javascript闭包》 — Vinson-sheep博客&source=
+函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/07/Javascript闭包/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript闭包》 — Vinson-sheep博客&url=/2017/10/07/Javascript闭包/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/07/Javascript闭包/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/07/Javascript中call和apply/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript中call和apply</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/07/Javascript作为命名空间的函数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Javascript作为命名空间的函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        爱你哟~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Vinson-sheep &copy; 2016 - 2017</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备17065873号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/10/07/Javascript闭包/&title=《Javascript闭包》 — Vinson-sheep博客&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/10/07/Javascript闭包/&title=《Javascript闭包》 — Vinson-sheep博客&source=
+函数对象可以通过作用域链互相关联起来，函数体内部的变量都可以保存在函数作用域呢，这种特性在计算机科学文献中称为“闭包”。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/10/07/Javascript闭包/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Javascript闭包》 — Vinson-sheep博客&url=/2017/10/07/Javascript闭包/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/10/07/Javascript闭包/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABv0lEQVR42u3aS5LCMAwFwNz/0swBZghPkm0yVe0VCwjtLFT6XVd8Xrfn93fyZ147Di4u7pi7ipI8593T8t/i4uKe5N4HmvvP7/4+IeYGXFzc53OTYFS9Ni4u7v/lVv/sPtHBxcV9MjcpfhJEtTTaWKvh4uIOuNXm5o7PW/q7uLi4Le6reOYXmBxcXNwz3DygVFshk5Lpvs2Ki4u7m7u2COmVK/dDlz/eKy4u7nFuMhBdW5UU0iZcXNwj3PsSpbo2ka9fVEcvuLi4J7lJC2PfSDUPc7i4uOe5SaKTpya9cihJs3Bxcc9wq43LtaVRcz0LFxf3CLfXAJ0vXuRNmfJyBi4u7oBbbWokE4288Zq0YAq1Gi4u7iJuvloxWcKoDk4+JDe4uLgP4FbLoXzI2my74OLiHuRO1ikmV62WRri4uOe51VZFngAVWp9JioOLi7uN2wtSvYWM6vWisgcXF3cDtzdW6bU/qheehD9cXNw5t1fM5AlNdfHrw6vBxcU9yK0uWEzGrstqNVxc3Adze6A8hC0OZLi4uBu4qyh50xYXF/db3OqqRB7Oet/ExcX9LrdahFSHKL2GyGisgouL2+f+AFYyuWjjF+f7AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你好像掉线了';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '好像又正常了';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
